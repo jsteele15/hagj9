@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgw7f58iom4r1"]
+
+[ext_resource type="Texture2D" uid="uid://srmtwfwq50j4" path="res://res/confed_map.png" id="1_4fh36"]
+[ext_resource type="Script" path="res://scenes/war_map.gd" id="1_5m3uf"]
+[ext_resource type="PackedScene" uid="uid://cpicmd3ka8vva" path="res://scenes/spy_centers.tscn" id="2_k2l75"]
+[ext_resource type="Script" path="res://scenes/ui_butts.gd" id="4_4q6a0"]
+[ext_resource type="PackedScene" uid="uid://crlnqrfn7l1kf" path="res://ui/buttons.tscn" id="5_kdkj2"]
+[ext_resource type="PackedScene" uid="uid://djjhcc46aa0wo" path="res://ui/turnbut.tscn" id="6_tgcpb"]
+[ext_resource type="Script" path="res://scenes/game_stats.gd" id="7_sb7tp"]
+
+[node name="war_map" type="Node2D"]
+position = Vector2(330, -39)
+script = ExtResource("1_5m3uf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+
+[node name="ConfedMap" type="Sprite2D" parent="Camera2D"]
+position = Vector2(592, 343)
+rotation = 0.20944
+scale = Vector2(2, 2)
+texture = ExtResource("1_4fh36")
+
+[node name="spy_centers3" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
+position = Vector2(-39, 134)
+
+[node name="spy_centers2" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
+position = Vector2(-200, 111)
+
+[node name="spy_centers" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
+position = Vector2(-37.5, -15)
+
+[node name="spy_centers4" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
+position = Vector2(28, 82.5)
+
+[node name="spy_centers5" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
+position = Vector2(135, 77)
+
+[node name="spy_centers6" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
+position = Vector2(114, -50)
+
+[node name="spy_centers7" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
+position = Vector2(240, 61)
+
+[node name="spy_centers8" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
+position = Vector2(286.5, 201)
+
+[node name="spy_centers9" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
+position = Vector2(339.5, 17.5)
+
+[node name="spy_centers10" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
+position = Vector2(343.5, -77.5)
+
+[node name="spy_centers11" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
+position = Vector2(335, -146.5)
+
+[node name="ui_butts" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -108.0
+offset_right = 960.0
+grow_vertical = 0
+script = ExtResource("4_4q6a0")
+
+[node name="upgrade" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
+position = Vector2(91, 51)
+activated = 1
+
+[node name="close" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
+position = Vector2(239, 47)
+fra = 2
+activated = 2
+
+[node name="recon" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
+position = Vector2(409, 53)
+fra = 4
+activated = 3
+
+[node name="intel" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
+position = Vector2(609, 55)
+fra = 6
+activated = 4
+
+[node name="turnbut" parent="Camera2D/ui_butts" instance=ExtResource("6_tgcpb")]
+position = Vector2(827, -20)
+
+[node name="game_stats" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -326.0
+offset_top = 46.0
+offset_right = 820.0
+offset_bottom = 88.0
+script = ExtResource("7_sb7tp")
