@@ -5,7 +5,7 @@ extends Node2D
 @export var fra = 0
 
 #to compare to the level info
-@export var activated = 0 
+@export var activated = 0
 
 var change_trig = false
 var selected = false
@@ -31,9 +31,14 @@ func _process(delta: float) -> void:
 		$TempButs.frame -= 1
 		change_trig = false
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("left_click") and entered == true:
+		level_info.current_action = activated
+		
 
 func _on_area_2d_mouse_entered() -> void:
 	entered = true
+
 
 
 func _on_area_2d_mouse_exited() -> void:

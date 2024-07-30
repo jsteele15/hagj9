@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgw7f58iom4r1"]
+[gd_scene load_steps=12 format=3 uid="uid://bgw7f58iom4r1"]
 
 [ext_resource type="Texture2D" uid="uid://srmtwfwq50j4" path="res://res/confed_map.png" id="1_4fh36"]
 [ext_resource type="Script" path="res://scenes/war_map.gd" id="1_5m3uf"]
@@ -7,6 +7,64 @@
 [ext_resource type="PackedScene" uid="uid://crlnqrfn7l1kf" path="res://ui/buttons.tscn" id="5_kdkj2"]
 [ext_resource type="PackedScene" uid="uid://djjhcc46aa0wo" path="res://ui/turnbut.tscn" id="6_tgcpb"]
 [ext_resource type="Script" path="res://scenes/game_stats.gd" id="7_sb7tp"]
+
+[sub_resource type="FontFile" id="FontFile_xca37"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_ealv4"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_xg37o"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/3434/0/ascent = 0.0
+cache/0/3434/0/descent = 0.0
+cache/0/3434/0/underline_position = 0.0
+cache/0/3434/0/underline_thickness = 0.0
+cache/0/3434/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_uaevq"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
 
 [node name="war_map" type="Node2D"]
 position = Vector2(330, -39)
@@ -60,32 +118,34 @@ layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -108.0
+offset_left = -133.0
+offset_top = 19.0
 offset_right = 960.0
+offset_bottom = 19.0
 grow_vertical = 0
 script = ExtResource("4_4q6a0")
 
 [node name="upgrade" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
-position = Vector2(91, 51)
+position = Vector2(79, -69)
 activated = 1
 
 [node name="close" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
-position = Vector2(239, 47)
+position = Vector2(275, -70)
 fra = 2
 activated = 2
 
 [node name="recon" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
-position = Vector2(409, 53)
+position = Vector2(468, -71)
 fra = 4
 activated = 3
 
 [node name="intel" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
-position = Vector2(609, 55)
+position = Vector2(679, -73)
 fra = 6
 activated = 4
 
 [node name="turnbut" parent="Camera2D/ui_butts" instance=ExtResource("6_tgcpb")]
-position = Vector2(827, -20)
+position = Vector2(936, -132)
 
 [node name="game_stats" type="Control" parent="Camera2D"]
 layout_mode = 3
@@ -95,3 +155,46 @@ offset_top = 46.0
 offset_right = 820.0
 offset_bottom = 88.0
 script = ExtResource("7_sb7tp")
+
+[node name="battle" type="RichTextLabel" parent="Camera2D/game_stats"]
+layout_mode = 0
+offset_left = 961.0
+offset_top = 1.0
+offset_right = 1163.0
+offset_bottom = 67.0
+theme_override_fonts/normal_font = SubResource("FontFile_xca37")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] battle  [/center]"
+
+[node name="year" type="RichTextLabel" parent="Camera2D/game_stats"]
+layout_mode = 0
+offset_left = 614.0
+offset_top = -1.0
+offset_right = 828.0
+offset_bottom = 65.0
+theme_override_fonts/normal_font = SubResource("FontFile_ealv4")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] 1861  [/center]"
+
+[node name="turn" type="RichTextLabel" parent="Camera2D/game_stats"]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 1.0
+offset_right = 524.0
+offset_bottom = 62.0
+theme_override_fonts/normal_font = SubResource("FontFile_xg37o")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] turn: 1  [/center]"
+
+[node name="op_power" type="RichTextLabel" parent="Camera2D/game_stats"]
+layout_mode = 0
+offset_right = 208.0
+offset_bottom = 72.0
+theme_override_fonts/normal_font = SubResource("FontFile_uaevq")
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] OP: 10  [/center]"
