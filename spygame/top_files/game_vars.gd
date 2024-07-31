@@ -1,13 +1,35 @@
 extends Node
 
+###this is a force multiplyer for the battles
+var intel_sent = 1
+
+
+#this works out the current size of the bar and how close to union victory or loss
+### the amount you can win increases each time
+var cur_lengh = null
+var year_one = null
+var year_two = null
+var year_three = null
+var year_four = null
+var year_five = null
+
 ##turn for the game
 var turn = 1
 var date = 1861
 var op = 10
-var new_turn = false
+var new_turn = true
+##use this to make all the ui wait for the battle
+#needs implementing though
+var waiting = false
 
+###for the months of the year
+var month_list = ["Jan", "Feb", "March", "April", "May" ,"June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"]
+#remember zero index please
+var current_month = 1
 ##this is for the battles you prepare for
-var battle_list = [["jidfdij", 2], ["ijdffjo", 4]]
+##so, we've got the battle name, and then how many months until that battle happens, the months will need to come down each turn
+var battle_list = [["Fort Sumter", 2], ["Bull Run", 3], ["Shiloh", 9], ["Anietam", 5], ["Fredericksburg", 3], ["Chancellorsville", 4],
+	["Gettysburg", 3], ["Chickamauga", 2], ["Chattanooga", 2], ["Atlanta", 8], ["Appomattox station", 9]]
 var battle_ind = 0
 
 ##this is to do selected options

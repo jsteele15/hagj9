@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgw7f58iom4r1"]
+[gd_scene load_steps=15 format=3 uid="uid://bgw7f58iom4r1"]
 
 [ext_resource type="Texture2D" uid="uid://srmtwfwq50j4" path="res://res/confed_map.png" id="1_4fh36"]
 [ext_resource type="Script" path="res://scenes/war_map.gd" id="1_5m3uf"]
 [ext_resource type="PackedScene" uid="uid://cpicmd3ka8vva" path="res://scenes/spy_centers.tscn" id="2_k2l75"]
+[ext_resource type="Texture2D" uid="uid://cseyjq4db7pqh" path="res://res/road.png" id="3_lf4le"]
 [ext_resource type="Script" path="res://scenes/ui_butts.gd" id="4_4q6a0"]
+[ext_resource type="Script" path="res://scenes/road.gd" id="4_yuor6"]
 [ext_resource type="PackedScene" uid="uid://crlnqrfn7l1kf" path="res://ui/buttons.tscn" id="5_kdkj2"]
 [ext_resource type="PackedScene" uid="uid://djjhcc46aa0wo" path="res://ui/turnbut.tscn" id="6_tgcpb"]
 [ext_resource type="Script" path="res://scenes/game_stats.gd" id="7_sb7tp"]
+[ext_resource type="PackedScene" uid="uid://b3k4kl8il6lwc" path="res://ui/battle_card.tscn" id="8_j3lif"]
 
 [sub_resource type="FontFile" id="FontFile_xca37"]
 cache/0/16/0/ascent = 0.0
@@ -75,10 +78,119 @@ limit_left = 0
 limit_top = 0
 
 [node name="ConfedMap" type="Sprite2D" parent="Camera2D"]
-position = Vector2(592, 343)
+position = Vector2(513, 422)
 rotation = 0.20944
 scale = Vector2(2, 2)
 texture = ExtResource("1_4fh36")
+
+[node name="texas_lou_rd" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
+position = Vector2(-119.254, 122.691)
+rotation = 0.139626
+scale = Vector2(1.32509, 0.0881328)
+texture = ExtResource("3_lf4le")
+script = ExtResource("4_yuor6")
+con_1 = NodePath("../spy_centers2")
+con_2 = NodePath("../spy_centers3")
+rd = NodePath(".")
+
+[node name="lou_mis" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
+position = Vector2(-4.86289, 109.387)
+rotation = -0.692896
+scale = Vector2(0.544856, 0.0795683)
+texture = ExtResource("3_lf4le")
+script = ExtResource("4_yuor6")
+con_1 = NodePath("../spy_centers3")
+con_2 = NodePath("../spy_centers4")
+rd = NodePath(".")
+
+[node name="lou_ala" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
+position = Vector2(81.3129, 79.1166)
+rotation = -0.0872665
+scale = Vector2(0.788691, 0.0826747)
+texture = ExtResource("3_lf4le")
+script = ExtResource("4_yuor6")
+con_1 = NodePath("../spy_centers4")
+con_2 = NodePath("../spy_centers5")
+rd = NodePath(".")
+
+[node name="lou_gor" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
+position = Vector2(187.443, 70.5417)
+rotation = -0.139626
+scale = Vector2(0.773788, 0.0750985)
+texture = ExtResource("3_lf4le")
+script = ExtResource("4_yuor6")
+con_1 = NodePath("../spy_centers5")
+con_2 = NodePath("../spy_centers7")
+rd = NodePath(".")
+
+[node name="gor_sc" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
+position = Vector2(290.103, 40.7371)
+rotation = -0.436332
+scale = Vector2(0.792622, 0.078639)
+texture = ExtResource("3_lf4le")
+script = ExtResource("4_yuor6")
+con_1 = NodePath("../spy_centers7")
+con_2 = NodePath("../spy_centers9")
+rd = NodePath(".")
+
+[node name="sc_nc" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
+position = Vector2(340.917, -29.9915)
+scale = Vector2(0.0810288, 0.654259)
+texture = ExtResource("3_lf4le")
+script = ExtResource("4_yuor6")
+con_1 = NodePath("../spy_centers9")
+con_2 = NodePath("../spy_centers10")
+rd = NodePath(".")
+
+[node name="nc_vir" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
+position = Vector2(340.286, -112.309)
+rotation = -0.16057
+scale = Vector2(0.082652, 0.39893)
+texture = ExtResource("3_lf4le")
+script = ExtResource("4_yuor6")
+con_1 = NodePath("../spy_centers10")
+con_2 = NodePath("../spy_centers11")
+rd = NodePath(".")
+
+[node name="fl_gor" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
+position = Vector2(263.091, 131.877)
+rotation = -0.322886
+scale = Vector2(0.128962, 1.20355)
+texture = ExtResource("3_lf4le")
+script = ExtResource("4_yuor6")
+con_1 = NodePath("../spy_centers8")
+con_2 = NodePath("../spy_centers7")
+rd = NodePath(".")
+
+[node name="ark_mis" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
+position = Vector2(-3.12828, 33.3798)
+rotation = -0.610865
+scale = Vector2(0.096822, 0.880235)
+texture = ExtResource("3_lf4le")
+script = ExtResource("4_yuor6")
+con_1 = NodePath("../spy_centers")
+con_2 = NodePath("../spy_centers4")
+rd = NodePath(".")
+
+[node name="ala_ten" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
+position = Vector2(123.449, 13.7548)
+rotation = -0.162316
+scale = Vector2(0.117951, 1.00412)
+texture = ExtResource("3_lf4le")
+script = ExtResource("4_yuor6")
+con_1 = NodePath("../spy_centers6")
+con_2 = NodePath("../spy_centers5")
+rd = NodePath(".")
+
+[node name="flo_mis" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
+position = Vector2(155.674, 144.961)
+rotation = -1.12574
+scale = Vector2(0.096822, 2.55711)
+texture = ExtResource("3_lf4le")
+script = ExtResource("4_yuor6")
+con_1 = NodePath("../spy_centers4")
+con_2 = NodePath("../spy_centers8")
+rd = NodePath(".")
 
 [node name="spy_centers3" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
 position = Vector2(-39, 134)
@@ -102,7 +214,7 @@ position = Vector2(114, -50)
 position = Vector2(240, 61)
 
 [node name="spy_centers8" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
-position = Vector2(286.5, 201)
+position = Vector2(285.358, 202.598)
 
 [node name="spy_centers9" parent="Camera2D/ConfedMap" instance=ExtResource("2_k2l75")]
 position = Vector2(339.5, 17.5)
@@ -198,3 +310,20 @@ theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center] OP: 10  [/center]"
+
+[node name="conf" type="ColorRect" parent="."]
+offset_left = -330.0
+offset_top = 102.0
+offset_right = 1428.0
+offset_bottom = 142.0
+color = Color(0.74902, 0.0392157, 0.188235, 1)
+
+[node name="feds" type="ColorRect" parent="."]
+offset_left = -330.0
+offset_top = 102.0
+offset_right = -290.0
+offset_bottom = 142.0
+color = Color(0.0392157, 0.192157, 0.380392, 1)
+
+[node name="battle_card" parent="." instance=ExtResource("8_j3lif")]
+position = Vector2(308, 1506)

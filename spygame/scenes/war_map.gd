@@ -12,8 +12,36 @@ var count_num_active = 0
 ###to pre load the intel 
 var intel_load = preload("res://scenes/intel.tscn")
 
+func _ready() -> void:
+	#so that battles can become more consecuential with time
+	level_info.cur_lengh = get_viewport_rect().size[0]/2 
+	level_info.year_one = get_viewport_rect().size[0]/32
+	level_info.year_two = get_viewport_rect().size[0]/16
+	level_info.year_three = get_viewport_rect().size[0]/8
+	level_info.year_four = get_viewport_rect().size[0]/4
+	level_info.year_five = get_viewport_rect().size[0]/2
+	
+	##move the fed bar to show winning or losing
+	$feds.size.x = get_viewport_rect().size[0]/2 
+	$conf.size.x = get_viewport_rect().size[0]
+	
+	###to set the card in the right place
+	$battle_card.position.x = get_viewport_rect().size[0]/2 -300
+	
 func _process(delta: float) -> void:
 	if level_info.new_turn == true:
+		
+		
+		##for the months, change the clock
+		if level_info.current_month == 11:
+			level_info.current_month = 0
+			level_info.date += 1
+		else:
+			level_info.current_month += 1
+		
+		###to count down until the battle
+		if level_info.battle_list[level_info.battle_ind][1] > 0:
+			level_info.battle_list[level_info.battle_ind][1] -= 1
 		
 		##this counts how mant active sights there are
 		count_num_active = 0
@@ -41,6 +69,7 @@ func _process(delta: float) -> void:
 						if spy_center_list[c].recon_lv == 32:
 							spy_center_list[c].recon_lv = 0
 							var intel_inst = intel_load.instantiate()
+							intel_inst.current_station = spy_center_list[c]
 							intel_inst.position = spy_center_list[c].position
 							spy_center_list[c].reconing = false
 							$Camera2D/ConfedMap.add_child(intel_inst)
@@ -64,8 +93,8 @@ func _process(delta: float) -> void:
 		$Camera2D/ui_butts/turnbut.clicked = false
 		
 		###this is for the tracking stats
-		$Camera2D/game_stats/battle.text = "[center] battle in {howl} turns[/center]".format({"howl":level_info.battle_list[level_info.battle_ind][1]})
-		$Camera2D/game_stats/year.text = "[center] {year} [/center]".format({"year":level_info.date})
+		
+		$Camera2D/game_stats/year.text = "[center] {month} {year} [/center]".format({"month": level_info.month_list[level_info.current_month], "year":level_info.date})
 		$Camera2D/game_stats/turn.text = "[center] turn: {t} [/center]".format({"t":level_info.turn})
 		
 		level_info.turn += 1
@@ -73,4 +102,10 @@ func _process(delta: float) -> void:
 		
 	#placing this here so it changes dynamically
 	$Camera2D/game_stats/op_power.text = "[center] OP: {op} [/center]".format({"op":level_info.op})
+	$Camera2D/game_stats/battle.text = "[center] battle in {howl} turns[/center]".format({"howl":level_info.battle_list[level_info.battle_ind][1]})
 	
+	##to decrease and increase the size of the bar depending on what the current lengh is
+	if $feds.size.x < level_info.cur_lengh:
+		$feds.size.x += 2
+	if $feds.size.x > level_info.cur_lengh:
+		$feds.size.x -= 2
