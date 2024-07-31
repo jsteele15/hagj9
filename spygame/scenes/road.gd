@@ -6,6 +6,8 @@ extends Sprite2D
 
 @onready var connected = [con_1, con_2]
 
+var rn = "road"
+
 func _process(delta: float) -> void:
 	
 	if connected[0].operational == true and connected[1].operational == true:
@@ -14,3 +16,4 @@ func _process(delta: float) -> void:
 	else:
 		rd.modulate = "ffffff"
 		
+

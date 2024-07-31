@@ -1,7 +1,62 @@
 extends Node2D
 
+@onready var level_info = get_node("/root/GameVars")
+
 #to work out if the intel has been picked up
 var selected = false
 var entered = false
 
 var current_station = null
+var saved_station = null
+
+@onready var saved_area_pos = current_station.position
+@onready var new_area_pos = null
+
+var inside = false
+
+
+func _process(delta: float) -> void:
+	if selected == true:
+		$IntelPic.frame = 1
+		$".".global_position = get_global_mouse_position()
+	else:
+		$IntelPic.frame = 0
+		if inside == false:
+			$".".position = current_station.position
+		else:
+			$".".position = new_area_pos
+			current_station = saved_station
+			
+			
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("left_click") and entered == true and level_info.current_action == 4:
+		selected = true
+	if event.is_action_released("left_click") and selected == true:
+		selected = false
+
+
+func _on_area_2d_mouse_entered() -> void:
+	entered = true
+
+
+func _on_area_2d_mouse_exited() -> void:
+	entered = false
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.get_parent().has_method("new_pos"):
+		if area.get_parent().operational == true:
+			if area.get_parent().new_pos(current_station):
+				inside = true
+				new_area_pos = area.get_parent().position
+				saved_station = area.get_parent()
+			else:
+				pass
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	inside = false
+
+func is_intel():
+	level_info.intel_sent += 1
+	$".".queue_free()

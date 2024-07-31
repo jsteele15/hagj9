@@ -69,10 +69,14 @@ func _process(delta: float) -> void:
 						if spy_center_list[c].recon_lv == 32:
 							spy_center_list[c].recon_lv = 0
 							var intel_inst = intel_load.instantiate()
+							
 							intel_inst.current_station = spy_center_list[c]
 							intel_inst.position = spy_center_list[c].position
+							intel_inst.saved_area_pos = spy_center_list[c].position
+							
 							spy_center_list[c].reconing = false
 							$Camera2D/ConfedMap.add_child(intel_inst)
+							
 						
 					if spy_center_list[c].reconing == false:
 						#this times it by the number of sights that are active

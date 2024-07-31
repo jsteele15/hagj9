@@ -2,6 +2,13 @@ extends Node2D
 
 @onready var level_info = get_node("/root/GameVars")
 
+##a list of roads that can be iterated over to work out if each place has the same road
+@export var rd1 : Sprite2D = null
+@export var rd2 : Sprite2D = null
+@export var rd3 : Sprite2D = null
+@export var rd4 : Sprite2D = null
+@onready var rd_list = [rd1, rd2, rd3, rd4]
+
 ##this is to show whether station is opperational
 var operational = false
 var change_trig = true
@@ -94,3 +101,12 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	entered = false
+
+func new_pos(new_station):
+	for i in new_station.rd_list:
+		if i != null:
+			for l in rd_list:
+				if l != null:
+					if i == l:
+						return true
+					
