@@ -29,7 +29,7 @@ var current_month = 1
 ##this is for the battles you prepare for
 ##so, we've got the battle name, and then how many months until that battle happens, the months will need to come down each turn
 var battle_list = [["Fort Sumter", 2], ["Bull Run", 3], ["Shiloh", 9], ["Anietam", 5], ["Fredericksburg", 3], ["Chancellorsville", 4],
-	["Gettysburg", 3], ["Chickamauga", 2], ["Chattanooga", 2], ["Atlanta", 8], ["Appomattox station", 9]]
+	["Gettysburg", 3], ["Chickamauga", 2], ["Lookout Mountain", 2], ["Atlanta", 8], ["Appomattox station", 9]]
 var battle_ind = 0
 
 ##this is to do selected options

@@ -99,17 +99,23 @@ func _process(delta: float) -> void:
 		###this is for the tracking stats
 		
 		$Camera2D/game_stats/year.text = "[center] {month} {year} [/center]".format({"month": level_info.month_list[level_info.current_month], "year":level_info.date})
-		$Camera2D/game_stats/turn.text = "[center] turn: {t} [/center]".format({"t":level_info.turn})
+		$Camera2D/game_stats/turn.text = "[center] Turn: {t} [/center]".format({"t":level_info.turn})
 		
 		level_info.turn += 1
 		level_info.new_turn = false
 		
 	#placing this here so it changes dynamically
 	$Camera2D/game_stats/op_power.text = "[center] OP: {op} [/center]".format({"op":level_info.op})
-	$Camera2D/game_stats/battle.text = "[center] battle in {howl} turns[/center]".format({"howl":level_info.battle_list[level_info.battle_ind][1]})
+	$Camera2D/game_stats/battle.text = "[center] Battle in {howl} turns[/center]".format({"howl":level_info.battle_list[level_info.battle_ind][1]})
 	
 	##to decrease and increase the size of the bar depending on what the current lengh is
 	if $feds.size.x < level_info.cur_lengh:
 		$feds.size.x += 2
 	if $feds.size.x > level_info.cur_lengh:
 		$feds.size.x -= 2
+		
+	###to move the ui down when a battle is happening
+	if level_info.battle_list[level_info.battle_ind][1] == 0 and $Camera2D/ui_butts.position.y < get_viewport_rect().size[1] + 360:
+		$Camera2D/ui_butts.position.y += 20
+	if level_info.battle_list[level_info.battle_ind][1] != 0 and $Camera2D/ui_butts.position.y > get_viewport_rect().size[1]:
+		$Camera2D/ui_butts.position.y -= 20

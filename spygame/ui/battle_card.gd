@@ -34,8 +34,9 @@ var rand_s = RandomNumberGenerator.new()
 func _process(delta: float) -> void:
 	if level_info.battle_list[level_info.battle_ind][1] == 0 and closed == false:
 		$BattleCard/bat_name.text = "[center] Battle of {name}[/center]".format({"name":level_info.battle_list[level_info.battle_ind][0]})
+		$BattleCard/bat_name2.text = "[center] Battle of {name}[/center]".format({"name":level_info.battle_list[level_info.battle_ind][0]})
 		change_once = false
-		if $".".position.y > 160:
+		if $".".position.y > 180:
 			$".".position.y -= 20
 		else:
 			if timer_set == false:
@@ -51,6 +52,7 @@ func _process(delta: float) -> void:
 		else:
 			###so this is for resetting all of the triggers
 			if change_once == false:
+				$BattleCard/BattleImages.frame = level_info.battle_ind
 				if timer != null:
 					remove_child(timer)
 				closed = false
@@ -58,13 +60,19 @@ func _process(delta: float) -> void:
 				results_once = false
 				round = 0
 				change_once = true
+				$union.size.x = 200
 				$BattleCard/feds.text = ""
 				$BattleCard/slavers.text = ""
+				$BattleCard/feds/results.text = ""
+				$BattleCard/slavers/results.text = ""
+				$BattleCard/bat_name2.visible = true
+				$BattleCard/bat_name.visible = true
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("left_click") and entered == true:
 		###this closes the battle thing, will need to reset it at some point, probably with a timer
 		closed = true
+		level_info.battle_list[level_info.battle_ind][1] = 1
 		level_info.battle_ind += 1
 
 func _on_area_2d_mouse_entered() -> void:
@@ -76,7 +84,9 @@ func _on_area_2d_mouse_exited() -> void:
 	
 ##00f800 for the green text
 func battle_round():
-	if round < 6:
+	$BattleCard/bat_name2.visible = false
+	$BattleCard/bat_name.visible = false
+	if round < 4:
 		###doing this so i can use the random number gen in multiple places
 		var save_e = rand_e.randi_range(0, len(event_list)-1)
 		var save_s = rand_s.randi_range(0, len(success_chance)-1)
