@@ -30,16 +30,25 @@ var success_chance = ["very successful", "impressive", "historic", "mid", "effec
 var rand_e = RandomNumberGenerator.new()
 var rand_s = RandomNumberGenerator.new()
 
+###for deciding battles randomly
+var rand_b = RandomNumberGenerator.new()
 
 func _process(delta: float) -> void:
 	if level_info.battle_list[level_info.battle_ind][1] == 0 and closed == false:
+		
 		$BattleCard/bat_name.text = "[center] Battle of {name}[/center]".format({"name":level_info.battle_list[level_info.battle_ind][0]})
 		$BattleCard/bat_name2.text = "[center] Battle of {name}[/center]".format({"name":level_info.battle_list[level_info.battle_ind][0]})
 		change_once = false
+		
+		##to fade the battle noises in
+		if $battle_sound.volume_db < 1:
+			$battle_sound.volume_db += 0.05
+		
 		if $".".position.y > 180:
 			$".".position.y -= 20
 		else:
 			if timer_set == false:
+				$battle_sound.play()
 				timer = Timer.new()
 				add_child(timer)
 				timer.wait_time = 2
@@ -47,14 +56,21 @@ func _process(delta: float) -> void:
 				timer.start()
 				timer_set = true
 	else:
+		
+		##to fade the battle noises out
+		if $battle_sound.volume_db > -10:
+			$battle_sound.volume_db -= 0.25
+			
 		if $".".position.y < 1200:
 			$".".position.y += 20
+
 		else:
 			###so this is for resetting all of the triggers
 			if change_once == false:
 				$BattleCard/BattleImages.frame = level_info.battle_ind
 				if timer != null:
 					remove_child(timer)
+				$battle_sound.stop()
 				closed = false
 				timer_set = false
 				results_once = false
@@ -68,20 +84,56 @@ func _process(delta: float) -> void:
 				$BattleCard/bat_name2.visible = true
 				$BattleCard/bat_name.visible = true
 
+###this is for closing the card
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("left_click") and entered == true:
 		###this closes the battle thing, will need to reset it at some point, probably with a timer
 		closed = true
-		level_info.battle_list[level_info.battle_ind][1] = 1
-		level_info.battle_ind += 1
-
+		level_info.intel_sent = 1
+		
+		var save_b = rand_b.randi_range(0, 4+level_info.intel_sent)
+		if round < 4:
+			if save_b < 4:
+				if level_info.date == 1861:
+					level_info.cur_lengh -= level_info.year_one
+				if level_info.date == 1862:
+					level_info.cur_lengh -= level_info.year_two
+				if level_info.date == 1863:
+					level_info.cur_lengh -= level_info.year_three
+				if level_info.date == 1864:
+					level_info.cur_lengh -= level_info.year_four
+				if level_info.date == 1865:
+					level_info.cur_lengh -= level_info.year_five
+			else:
+				if level_info.date == 1861:
+					level_info.cur_lengh += level_info.year_one
+				if level_info.date == 1862:
+					level_info.cur_lengh += level_info.year_two
+				if level_info.date == 1863:
+					level_info.cur_lengh += level_info.year_three
+				if level_info.date == 1864:
+					level_info.cur_lengh += level_info.year_four
+				if level_info.date == 1865:
+					level_info.cur_lengh += level_info.year_five
+			
+		if level_info.battle_ind + 1 < 11:
+			level_info.battle_ind += 1
+		else:
+			closed = true
+			level_info.game_finish = true
+			
 func _on_area_2d_mouse_entered() -> void:
 	entered = true
 
 
 func _on_area_2d_mouse_exited() -> void:
 	entered = false
-	
+
+
+###this is for the battle rounds
+###right now there is a bug where it gets stuck on a confederate turn
+###also the battle just ends if you press close
+
 ##00f800 for the green text
 func battle_round():
 	$BattleCard/bat_name2.visible = false

@@ -25,6 +25,9 @@ var alertness = 0
 var reconing = false
 var recon_lv = 0
 
+###so you cant use the same place over and over again
+var percentage = 100
+var times_used = 1
 ###this is to work out if there's intel at a station
 var intel_here = false
 
@@ -34,6 +37,11 @@ func _ready() -> void:
 	$reconlv.size.x = recon_lv
 
 func _process(delta: float) -> void:
+	
+	if times_used > 1:
+		$perc.visible = true
+		
+		$perc.text = "{perc}%".format({"perc": percentage/times_used})
 	
 	###this is for changing the colour of the awareness rect depending on what level its at
 	$alertlv.size.x = alertness
@@ -66,6 +74,7 @@ func _process(delta: float) -> void:
 	###this is for working out if the center is operational or not
 	if operational == false:
 		$SpyCenter.modulate = "ffffff"
+		$SpyGlass.visible = false
 		if $".".scale.x > 0.5:
 			$".".scale.x -= 0.01
 			$".".scale.y -= 0.01
@@ -82,6 +91,7 @@ func _input(event: InputEvent) -> void:
 		if cost <= level_info.op and operational == false:
 			level_info.op -= cost
 			operational = true
+			$construction.play()
 	
 	##this allows you to close said center
 	if event.is_action_released("left_click") and entered == true and level_info.current_action == 2:
@@ -91,8 +101,10 @@ func _input(event: InputEvent) -> void:
 			
 	if event.is_action_released("left_click") and entered == true and level_info.current_action == 3:
 		if operational == true and reconing == false:
-			level_info.op -= cost
-			reconing = true
+			if level_info.op - cost >= 0:	
+				level_info.op -= cost
+				reconing = true
+				$shush.play()
 
 
 

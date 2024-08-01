@@ -12,7 +12,7 @@ var operational = true
 var entered = false
 var current_intel = null
 
-
+var intel_here = false
 
 func new_pos(new_station):
 	for i in new_station.rd_list:

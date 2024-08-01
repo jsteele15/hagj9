@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgw7f58iom4r1"]
+[gd_scene load_steps=16 format=3 uid="uid://bgw7f58iom4r1"]
 
 [ext_resource type="Texture2D" uid="uid://srmtwfwq50j4" path="res://res/confed_map.png" id="1_4fh36"]
 [ext_resource type="Script" path="res://scenes/war_map.gd" id="1_5m3uf"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scenes/game_stats.gd" id="7_sb7tp"]
 [ext_resource type="PackedScene" uid="uid://b3k4kl8il6lwc" path="res://ui/battle_card.tscn" id="8_j3lif"]
 [ext_resource type="FontFile" uid="uid://ljumcpkmeute" path="res://res/amiri/Amiri-Bold.ttf" id="13_bbbas"]
+[ext_resource type="PackedScene" uid="uid://d1puxrnq2rbq7" path="res://scenes/end_screen.tscn" id="15_dkfr7"]
 
 [node name="war_map" type="Node2D"]
 position = Vector2(330, -39)
@@ -21,8 +22,8 @@ script = ExtResource("1_5m3uf")
 
 [node name="WhiteBlock" type="Sprite2D" parent="."]
 modulate = Color(0.901961, 0.839216, 0.776471, 0.631373)
-position = Vector2(648, 638)
-scale = Vector2(0.781889, 0.981883)
+position = Vector2(2381.58, 638)
+scale = Vector2(1.93761, 0.981883)
 texture = ExtResource("2_tocqt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -162,9 +163,9 @@ con_2 = NodePath("../spy_centers4")
 rd = NodePath(".")
 
 [node name="lou_gor" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
-position = Vector2(176.025, 2.14682)
+position = Vector2(177.218, 2.58119)
 rotation = 0.349066
-scale = Vector2(0.870088, 0.0750985)
+scale = Vector2(0.895488, 0.0750985)
 texture = ExtResource("3_lf4le")
 script = ExtResource("4_yuor6")
 con_1 = NodePath("../spy_centers5")
@@ -252,9 +253,9 @@ con_2 = NodePath("../spy_centers8")
 rd = NodePath(".")
 
 [node name="nor_ark" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
-position = Vector2(25.6088, -190.01)
+position = Vector2(9.97133, -184.318)
 rotation = 1.22173
-scale = Vector2(0.065, 1.52393)
+scale = Vector2(0.065, 1.19111)
 texture = ExtResource("3_lf4le")
 script = ExtResource("4_yuor6")
 con_1 = NodePath("../spy_centers")
@@ -307,20 +308,22 @@ rd2 = NodePath("../ark_mis")
 rd3 = NodePath("../lou_ala")
 rd4 = NodePath("../flo_mis")
 
-[node name="spy_centers5" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2") instance=ExtResource("2_k2l75")]
+[node name="spy_centers5" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2", "rd3") instance=ExtResource("2_k2l75")]
 position = Vector2(121, -16)
 rd1 = NodePath("../lou_ala")
 rd2 = NodePath("../ala_ten")
+rd3 = NodePath("../lou_gor")
 
 [node name="spy_centers6" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2") instance=ExtResource("2_k2l75")]
 position = Vector2(102.5, -145.5)
 rd1 = NodePath("../ala_ten")
 rd2 = NodePath("../nor_ten")
 
-[node name="spy_centers7" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2") instance=ExtResource("2_k2l75")]
+[node name="spy_centers7" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2", "rd3") instance=ExtResource("2_k2l75")]
 position = Vector2(234, 21)
 rd1 = NodePath("../fl_gor")
 rd2 = NodePath("../gor_sc")
+rd3 = NodePath("../lou_gor")
 
 [node name="spy_centers8" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2") instance=ExtResource("2_k2l75")]
 position = Vector2(215.5, 97.5)
@@ -428,6 +431,17 @@ theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center] OP: 10  [/center]"
 
+[node name="intel_gathered" type="RichTextLabel" parent="Camera2D/game_stats"]
+layout_mode = 0
+offset_left = 1170.0
+offset_top = 1.0
+offset_right = 1372.0
+offset_bottom = 67.0
+theme_override_fonts/normal_font = ExtResource("13_bbbas")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] IL : 1  [/center]"
+
 [node name="conf" type="ColorRect" parent="."]
 offset_left = -330.0
 offset_top = 102.0
@@ -442,5 +456,14 @@ offset_right = -290.0
 offset_bottom = 142.0
 color = Color(0.0392157, 0.192157, 0.380392, 1)
 
+[node name="fader" type="Sprite2D" parent="."]
+modulate = Color(0.901961, 0.839216, 0.776471, 0)
+position = Vector2(741, 268)
+texture = ExtResource("2_tocqt")
+
 [node name="battle_card" parent="." instance=ExtResource("8_j3lif")]
 position = Vector2(308, 1200)
+
+[node name="end_screen" parent="." instance=ExtResource("15_dkfr7")]
+position = Vector2(463, -724)
+scale = Vector2(2, 2)

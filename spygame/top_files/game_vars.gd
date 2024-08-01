@@ -2,7 +2,7 @@ extends Node
 
 ###this is a force multiplyer for the battles
 var intel_sent = 1
-
+var cul_intel = 0
 
 #this works out the current size of the bar and how close to union victory or loss
 ### the amount you can win increases each time
@@ -35,6 +35,9 @@ var battle_ind = 0
 ##this is to do selected options
 # 1 = upgrade or open center, 2 = is for closing one, 3 = recon, 4 = steal intel
 var current_action = 0
+
+###to tell when the game is finished
+var game_finish = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):
