@@ -96,13 +96,13 @@ func _input(event: InputEvent) -> void:
 	##this allows you to close said center
 	if event.is_action_released("left_click") and entered == true and level_info.current_action == 2:
 		if operational == true:
-			level_info.op += 5
+			level_info.op -= 10
 			operational = false
 			
 	if event.is_action_released("left_click") and entered == true and level_info.current_action == 3:
 		if operational == true and reconing == false:
-			if level_info.op - cost >= 0:	
-				level_info.op -= cost
+			if level_info.op - 5 >= 0:	
+				level_info.op -= 5
 				reconing = true
 				$shush.play()
 

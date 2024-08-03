@@ -30,7 +30,8 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):
 		#will need to link to main menu
-		pass
+		if entered == true:
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_area_2d_mouse_entered() -> void:
 	entered = true

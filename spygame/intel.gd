@@ -34,14 +34,22 @@ func _process(delta: float) -> void:
 		if inside == false:
 			$".".position = current_station.position
 		else:
-			$".".position = new_area_pos
-			###this changes whether the current station has intel or not
-			###in the new turn it should allow me to 
-			current_station.intel_here = false
-			#moves = 0
-			current_station = saved_station
-			current_station.intel_here = true
-	
+			if level_info.op - 10 >= 0:
+				if current_station != saved_station:
+					##this is the cost of moving station
+					level_info.op -= 10
+					$".".position = new_area_pos
+					###this changes whether the current station has intel or not
+					###in the new turn it should allow me to 
+					current_station.intel_here = false
+					#moves = 0
+				
+					
+					current_station = saved_station
+					current_station.intel_here = true
+			else:
+				$".".position = current_station.position
+				
 	if current_station.operational == false:
 		$".".queue_free()
 			
@@ -66,10 +74,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			if area.get_parent().new_pos(current_station):
 				
 				#if moves > 0:
+				#if level_info.op - 5 >= 0:
 				inside = true
 				new_area_pos = area.get_parent().position
 				saved_station = area.get_parent()
-					
+				#level_info.op -= 5
 				$paper_shuffle.play()
 			else:
 				pass

@@ -16,6 +16,20 @@ var intel_load = preload("res://scenes/intel.tscn")
 var rand_n = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	###this is to reset the game if you play it multiple times
+	level_info.intel_sent = 1
+	level_info.cul_intel = 0
+	level_info.turn = 1
+	level_info.date = 1861
+	level_info.op = 10
+	level_info.new_turn = true
+	level_info.current_month = 1
+	level_info.battle_list = [["Fort Sumter", 2], ["Bull Run", 3], ["Shiloh", 9], ["Anietam", 5], ["Fredericksburg", 3], ["Chancellorsville", 4],
+	["Gettysburg", 3], ["Chickamauga", 2], ["Lookout Mountain", 2], ["Atlanta", 8], ["Appomattox station", 9]]
+	level_info.battle_ind = 0
+	level_info.current_action = 0
+	level_info.game_finish = false
+	
 	#so that battles can become more consecuential with time
 	level_info.cur_lengh = get_viewport_rect().size[0]/2 
 	level_info.year_one = get_viewport_rect().size[0]/32
@@ -61,7 +75,7 @@ func _process(delta: float) -> void:
 		###this increases your power depending on if theyre active
 		for c in range(len(spy_center_list)):
 			if spy_center_list[c].operational == true:
-				level_info.op += spy_center_list[c].power_points
+				
 				
 				##this adds alertness to spy centers
 				##the idea is that when the alertness gets to 32 it destroys the place
@@ -111,11 +125,20 @@ func _process(delta: float) -> void:
 						if spy_center_list[s].operational == true:
 							spy_center_list[s].alertness += 3.2
 			
+			###moved this here so that you cant get points
+			if spy_center_list[c].operational == true:
+				level_info.op += spy_center_list[c].power_points
+				
 			##this reduces the alertness if the center is deactivated
 			if spy_center_list[c].operational == false:
-				if spy_center_list[c].alertness > 0:
+				if spy_center_list[c].alertness - 9.6 >= 0:
 					###need to change this so i can change the values dynamically and not run over
-					spy_center_list[c].alertness -= 3.2
+					
+					###change this so theres no over flow
+					##this should work
+					spy_center_list[c].alertness -= 9.6
+				else:
+					spy_center_list[c].alertness = 0
 		
 		$Camera2D/ui_butts/turnbut.clicked = false
 		
@@ -140,7 +163,7 @@ func _process(delta: float) -> void:
 	###to move the ui down when a battle is happening
 	if level_info.battle_list[level_info.battle_ind][1] == 0 and $Camera2D/ui_butts.position.y < get_viewport_rect().size[1] + 360 and level_info.game_finish != true:
 		$Camera2D/ui_butts.position.y += 20
-	if level_info.battle_list[level_info.battle_ind][1] != 0 and $Camera2D/ui_butts.position.y > get_viewport_rect().size[1] and level_info.game_finish != true:
+	if level_info.battle_list[level_info.battle_ind][1] != 0 and $Camera2D/ui_butts.position.y > get_viewport_rect().size[1] + 40 and level_info.game_finish != true:
 		$Camera2D/ui_butts.position.y -= 20
 	
 	###this needs to keep on reseting, because otherwise when this is implemented it wont work
@@ -154,3 +177,10 @@ func _process(delta: float) -> void:
 	else:
 		if $fader.modulate.a > 0:
 			$fader.modulate.a -= 0.01
+			
+	if $feds.size.x >= get_viewport_rect().size[0]:
+		level_info.game_finish = true
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("reload"):
+		get_tree().reload_current_scene()

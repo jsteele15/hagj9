@@ -32,6 +32,9 @@ var battle_list = [["Fort Sumter", 2], ["Bull Run", 3], ["Shiloh", 9], ["Anietam
 	["Gettysburg", 3], ["Chickamauga", 2], ["Lookout Mountain", 2], ["Atlanta", 8], ["Appomattox station", 9]]
 var battle_ind = 0
 
+###for the tutorial specifically
+var tutorial_battle_list = [["Fort Sumer", 10]]
+
 ##this is to do selected options
 # 1 = upgrade or open center, 2 = is for closing one, 3 = recon, 4 = steal intel
 var current_action = 0
@@ -58,3 +61,12 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("newturn"):
 		new_turn = true
 
+###a function to work out if adding something will make a bar too thic
+func bar_overflow(start, num_in, maxim):
+	if start + num_in > maxim:
+		var to_add = maxim - start
+		return  to_add
+		
+	else:
+		return  num_in
+	

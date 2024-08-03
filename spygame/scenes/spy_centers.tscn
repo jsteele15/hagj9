@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://crdvi00mb1ewd" path="res://res/shush-90127.mp3" id="6_5h0a8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7imxx"]
-radius = 17.1172
+radius = 19.0
 
 [node name="spy_centers" type="Node2D"]
 script = ExtResource("1_5n4o1")

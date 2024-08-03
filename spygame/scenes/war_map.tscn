@@ -40,7 +40,8 @@ modulate = Color(1, 1, 1, 0.407843)
 position = Vector2(-269.632, -75.5)
 scale = Vector2(0.3, 0.294)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 
 [node name="mis_nam" type="Sprite2D" parent="Camera2D/ConfedMap"]
 modulate = Color(1, 1, 1, 0.407843)
@@ -48,7 +49,8 @@ position = Vector2(-60.5, 10.5)
 rotation = 1.0472
 scale = Vector2(0.170281, 0.294)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 1
 
 [node name="lou_nam2" type="Sprite2D" parent="Camera2D/ConfedMap"]
@@ -57,7 +59,8 @@ position = Vector2(16, -59)
 rotation = 1.28805
 scale = Vector2(0.129815, 0.208855)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 2
 
 [node name="ala_nam3" type="Sprite2D" parent="Camera2D/ConfedMap"]
@@ -66,7 +69,8 @@ position = Vector2(83, -49)
 rotation = 1.21824
 scale = Vector2(0.119576, 0.29981)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 3
 
 [node name="flor_nam3" type="Sprite2D" parent="Camera2D/ConfedMap"]
@@ -75,7 +79,8 @@ position = Vector2(168, 53)
 rotation = 0.146608
 scale = Vector2(0.129815, 0.208855)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 4
 
 [node name="gor_nam3" type="Sprite2D" parent="Camera2D/ConfedMap"]
@@ -83,7 +88,8 @@ modulate = Color(1, 1, 1, 0.407843)
 position = Vector2(209.5, -15)
 scale = Vector2(0.129815, 0.208855)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 5
 
 [node name="south_nam3" type="Sprite2D" parent="Camera2D/ConfedMap"]
@@ -91,7 +97,8 @@ modulate = Color(1, 1, 1, 0.407843)
 position = Vector2(264.546, -85.9495)
 scale = Vector2(0.114908, 0.163251)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 6
 
 [node name="nor_nam3" type="Sprite2D" parent="Camera2D/ConfedMap"]
@@ -99,7 +106,8 @@ modulate = Color(1, 1, 1, 0.407843)
 position = Vector2(309.5, -147.5)
 scale = Vector2(0.104407, 0.170604)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 7
 
 [node name="ark_nam3" type="Sprite2D" parent="Camera2D/ConfedMap"]
@@ -107,7 +115,8 @@ modulate = Color(1, 1, 1, 0.407843)
 position = Vector2(-65, -133)
 scale = Vector2(0.129815, 0.208855)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 11
 
 [node name="cs_nam3" type="Sprite2D" parent="Camera2D/ConfedMap"]
@@ -115,7 +124,8 @@ modulate = Color(1, 1, 1, 0.407843)
 position = Vector2(275, -72)
 scale = Vector2(0.118908, 0.177957)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 8
 
 [node name="cn_nam3" type="Sprite2D" parent="Camera2D/ConfedMap"]
@@ -123,7 +133,8 @@ modulate = Color(1, 1, 1, 0.407843)
 position = Vector2(324.5, -133)
 scale = Vector2(0.129815, 0.208855)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 8
 
 [node name="ten_nam3" type="Sprite2D" parent="Camera2D/ConfedMap"]
@@ -131,7 +142,8 @@ modulate = Color(1, 1, 1, 0.407843)
 position = Vector2(111, -149)
 scale = Vector2(0.129815, 0.208855)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 9
 
 [node name="vir_nam3" type="Sprite2D" parent="Camera2D/ConfedMap"]
@@ -139,7 +151,8 @@ modulate = Color(1, 1, 1, 0.407843)
 position = Vector2(364, -193.5)
 scale = Vector2(0.0999075, 0.192662)
 texture = ExtResource("4_yjlcr")
-hframes = 12
+hframes = 3
+vframes = 4
 frame = 10
 
 [node name="texas_lou_rd" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
@@ -223,9 +236,9 @@ con_2 = NodePath("../spy_centers4")
 rd = NodePath(".")
 
 [node name="ala_ten" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
-position = Vector2(111.553, -80.6761)
+position = Vector2(112.712, -73.5978)
 rotation = -0.162316
-scale = Vector2(0.117951, 1.01068)
+scale = Vector2(0.117951, 0.867228)
 texture = ExtResource("3_lf4le")
 script = ExtResource("4_yuor6")
 con_1 = NodePath("../spy_centers6")
@@ -253,9 +266,9 @@ con_2 = NodePath("../spy_centers8")
 rd = NodePath(".")
 
 [node name="nor_ark" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
-position = Vector2(9.97133, -184.318)
+position = Vector2(1.06753, -181.077)
 rotation = 1.22173
-scale = Vector2(0.065, 1.19111)
+scale = Vector2(0.065, 1.00161)
 texture = ExtResource("3_lf4le")
 script = ExtResource("4_yuor6")
 con_1 = NodePath("../spy_centers")
@@ -263,8 +276,8 @@ con_2 = NodePath("../north")
 rd = NodePath(".")
 
 [node name="nor_ten" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
-position = Vector2(101, -174.288)
-scale = Vector2(0.065, 0.284241)
+position = Vector2(102.375, -168.75)
+scale = Vector2(0.0924999, 0.425)
 texture = ExtResource("3_lf4le")
 script = ExtResource("4_yuor6")
 con_1 = NodePath("../spy_centers6")
@@ -272,20 +285,21 @@ con_2 = NodePath("../north")
 rd = NodePath(".")
 
 [node name="nor_vir" type="Sprite2D" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("con_1", "con_2", "rd")]
-position = Vector2(228.25, -198)
-scale = Vector2(1.835, 0.08)
+position = Vector2(238.25, -198)
+scale = Vector2(1.635, 0.08)
 texture = ExtResource("3_lf4le")
 script = ExtResource("4_yuor6")
 con_1 = NodePath("../spy_centers11")
 con_2 = NodePath("../north")
 rd = NodePath(".")
 
-[node name="north" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2", "rd3") instance=ExtResource("6_j30ya")]
-position = Vector2(100.5, -205.5)
+[node name="north" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2", "rd3", "rd4") instance=ExtResource("6_j30ya")]
+position = Vector2(103, -211)
 scale = Vector2(0.5, 0.5)
-rd1 = NodePath("../nor_ark")
-rd2 = NodePath("../nor_ten")
+rd1 = NodePath("../nor_ten")
+rd2 = NodePath("../nor_ark")
 rd3 = NodePath("../nor_vir")
+rd4 = NodePath("../nor_ten")
 
 [node name="spy_centers3" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2") instance=ExtResource("2_k2l75")]
 position = Vector2(-69.5, 6)
@@ -314,10 +328,11 @@ rd1 = NodePath("../lou_ala")
 rd2 = NodePath("../ala_ten")
 rd3 = NodePath("../lou_gor")
 
-[node name="spy_centers6" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2") instance=ExtResource("2_k2l75")]
-position = Vector2(102.5, -145.5)
+[node name="spy_centers6" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2", "rd3") instance=ExtResource("2_k2l75")]
+position = Vector2(103, -132)
 rd1 = NodePath("../ala_ten")
 rd2 = NodePath("../nor_ten")
+rd3 = NodePath("../nor_ten")
 
 [node name="spy_centers7" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2", "rd3") instance=ExtResource("2_k2l75")]
 position = Vector2(234, 21)
@@ -461,9 +476,9 @@ modulate = Color(0.901961, 0.839216, 0.776471, 0)
 position = Vector2(741, 268)
 texture = ExtResource("2_tocqt")
 
-[node name="battle_card" parent="." instance=ExtResource("8_j3lif")]
-position = Vector2(308, 1200)
-
 [node name="end_screen" parent="." instance=ExtResource("15_dkfr7")]
 position = Vector2(463, -724)
 scale = Vector2(2, 2)
+
+[node name="battle_card" parent="." instance=ExtResource("8_j3lif")]
+position = Vector2(308, 1200)

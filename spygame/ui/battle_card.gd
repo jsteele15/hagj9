@@ -14,6 +14,9 @@ var entered = false
 ###the points for winning or losing a round 
 var big_win = 40
 var small_win = 20
+###confed does more damage to buff
+var con_big_win = 60
+var con_small_win = 30
 
 ####this is to create the timer
 var timer_set = false
@@ -89,6 +92,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("left_click") and entered == true:
 		###this closes the battle thing, will need to reset it at some point, probably with a timer
 		closed = true
+		level_info.battle_list[level_info.battle_ind][1] = 1
+		
 		level_info.intel_sent = 1
 		
 		var save_b = rand_b.randi_range(0, 4+level_info.intel_sent)
@@ -159,7 +164,7 @@ func battle_round():
 	###this is to work out the victory status
 	else:
 		if results_once == false:
-			if $union.size.x > 240:
+			if $union.size.x >= 239:
 				$BattleCard/slavers.visible = false
 				$BattleCard/feds.visible = true
 				$BattleCard/feds.text = "[center] Union Victory! [/center]"
@@ -173,7 +178,8 @@ func battle_round():
 				if level_info.date == 1864:
 					level_info.cur_lengh += level_info.year_four
 				if level_info.date == 1865:
-					level_info.cur_lengh += level_info.year_five
+					###nerfed year five as the last battle can be far too damaging
+					level_info.cur_lengh += level_info.year_four
 				
 			if $union.size.x <239 and $union.size.x >190:
 				$BattleCard/slavers.visible = false
@@ -181,7 +187,7 @@ func battle_round():
 				$BattleCard/feds.text = "[center] Stalemate [/center]"
 				$BattleCard/feds/results.text = ""
 				
-			if $union.size.x < 189:
+			if $union.size.x <= 190:
 				$BattleCard/slavers.visible = true
 				$BattleCard/feds.visible = false
 				$BattleCard/slavers.text = "[center] Confederate Victory! [/center]"
@@ -195,34 +201,39 @@ func battle_round():
 				if level_info.date == 1864:
 					level_info.cur_lengh -= level_info.year_four
 				if level_info.date == 1865:
-					level_info.cur_lengh -= level_info.year_five
+					###nerfed year five as the last battle can be far too damaging
+					level_info.cur_lengh -= level_info.year_four
 			results_once = true
 				
 func change_bar(side, result):
 	if side == "union":
 		if result <= 2:
-			$union.size.x += big_win * level_info.intel_sent
+			var change = level_info.bar_overflow($union.size.x, big_win * level_info.intel_sent, $confed.size.x)
+			$union.size.x += change
 			var for_text = big_win * level_info.intel_sent
 			$BattleCard/feds/results.text = "[center] 40 base * {numint} for intel = {res} damage to Confederacy[/center]".format({"numint": level_info.intel_sent, "res": for_text})
 		if result > 2 and result < 6:
-			$union.size.x += small_win * level_info.intel_sent
+			var change = level_info.bar_overflow($union.size.x, small_win * level_info.intel_sent, $confed.size.x)
+			$union.size.x += change
 			var for_text = small_win * level_info.intel_sent
 			$BattleCard/feds/results.text = "[center] 20 base * {numint} for intel = {res} damage to Confederacy[/center]".format({"numint": level_info.intel_sent, "res": for_text})
 		if result >= 6:
-			$union.size.x -= small_win / level_info.intel_sent
-			var for_text = small_win / level_info.intel_sent
+			
+			$union.size.x -= con_small_win / level_info.intel_sent
+			var for_text = con_small_win / level_info.intel_sent
 			$BattleCard/feds/results.text = "[center] 20 base / {numint} for intel = {res} damage to the Union[/center]".format({"numint": level_info.intel_sent, "res": for_text})
 	if side == "confed":
 		if result <= 2:
-			$union.size.x -= big_win / level_info.intel_sent
-			var for_text = big_win * level_info.intel_sent
-			$BattleCard/slavers/results.text = "[center] 40 base * {numint} for intel = {res} damage to the Union[/center]".format({"numint": level_info.intel_sent, "res": for_text})
+			$union.size.x -= con_big_win / level_info.intel_sent
+			var for_text = con_big_win / level_info.intel_sent
+			$BattleCard/slavers/results.text = "[center] 40 base / {numint} for intel = {res} damage to the Union[/center]".format({"numint": level_info.intel_sent, "res": for_text})
 		if result > 2 and result < 6:
-			$union.size.x -= small_win / level_info.intel_sent
-			var for_text = small_win * level_info.intel_sent
-			$BattleCard/slavers/results.text = "[center] 20 base * {numint} for intel = {res} damage to the Union[/center]".format({"numint": level_info.intel_sent, "res": for_text})
+			$union.size.x -= con_small_win / level_info.intel_sent
+			var for_text = con_small_win / level_info.intel_sent
+			$BattleCard/slavers/results.text = "[center] 20 base / {numint} for intel = {res} damage to the Union[/center]".format({"numint": level_info.intel_sent, "res": for_text})
 		if result >= 6:
-			$union.size.x += small_win * level_info.intel_sent
-			var for_text = small_win / level_info.intel_sent
+			var change = level_info.bar_overflow($union.size.x, small_win * level_info.intel_sent, $confed.size.x)
+			$union.size.x += change
+			var for_text = small_win * level_info.intel_sent
 			$BattleCard/slavers/results.text = "[center] 40 base * {numint} for intel = {res} damage to the Confederacy[/center]".format({"numint": level_info.intel_sent, "res": for_text})
 
