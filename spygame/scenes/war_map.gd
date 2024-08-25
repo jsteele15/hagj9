@@ -16,7 +16,12 @@ var intel_load = preload("res://scenes/intel.tscn")
 var rand_n = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	###just messing around with scaleing the map
+	#$Camera2D/ConfedMap.scale = Vector2(1, 1)
+	##needs to change the location of the map as well though
+	
 	###this is to reset the game if you play it multiple times
+	
 	level_info.intel_sent = 1
 	level_info.cul_intel = 0
 	level_info.turn = 1
@@ -44,6 +49,7 @@ func _ready() -> void:
 	
 	###to set the card in the right place
 	$battle_card.position.x = get_viewport_rect().size[0]/2 -300
+	$battle_card.position.y = get_viewport_rect().size[1] + 400
 	
 func _process(delta: float) -> void:
 	if level_info.new_turn == true:
@@ -180,6 +186,7 @@ func _process(delta: float) -> void:
 			
 	if $feds.size.x >= get_viewport_rect().size[0]:
 		level_info.game_finish = true
+		$battle_card.closed = true
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reload"):

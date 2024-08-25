@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bgw7f58iom4r1"]
+[gd_scene load_steps=17 format=3 uid="uid://bgw7f58iom4r1"]
 
 [ext_resource type="Texture2D" uid="uid://srmtwfwq50j4" path="res://res/confed_map.png" id="1_4fh36"]
 [ext_resource type="Script" path="res://scenes/war_map.gd" id="1_5m3uf"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://djjhcc46aa0wo" path="res://ui/turnbut.tscn" id="6_tgcpb"]
 [ext_resource type="Script" path="res://scenes/game_stats.gd" id="7_sb7tp"]
 [ext_resource type="PackedScene" uid="uid://b3k4kl8il6lwc" path="res://ui/battle_card.tscn" id="8_j3lif"]
+[ext_resource type="PackedScene" uid="uid://c6rdv2pa3i622" path="res://scenes/destructables.tscn" id="9_ysmj7"]
 [ext_resource type="FontFile" uid="uid://ljumcpkmeute" path="res://res/amiri/Amiri-Bold.ttf" id="13_bbbas"]
 [ext_resource type="PackedScene" uid="uid://d1puxrnq2rbq7" path="res://scenes/end_screen.tscn" id="15_dkfr7"]
 
@@ -294,7 +295,7 @@ con_2 = NodePath("../north")
 rd = NodePath(".")
 
 [node name="north" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2", "rd3", "rd4") instance=ExtResource("6_j30ya")]
-position = Vector2(103, -211)
+position = Vector2(113, -211)
 scale = Vector2(0.5, 0.5)
 rd1 = NodePath("../nor_ten")
 rd2 = NodePath("../nor_ark")
@@ -315,12 +316,11 @@ position = Vector2(-60.5, -161)
 rd1 = NodePath("../ark_mis")
 rd2 = NodePath("../nor_ark")
 
-[node name="spy_centers4" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2", "rd3", "rd4") instance=ExtResource("2_k2l75")]
+[node name="spy_centers4" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2", "rd3") instance=ExtResource("2_k2l75")]
 position = Vector2(21.5, 20.5)
 rd1 = NodePath("../lou_mis")
 rd2 = NodePath("../ark_mis")
 rd3 = NodePath("../lou_ala")
-rd4 = NodePath("../flo_mis")
 
 [node name="spy_centers5" parent="Camera2D/ConfedMap" node_paths=PackedStringArray("rd1", "rd2", "rd3") instance=ExtResource("2_k2l75")]
 position = Vector2(121, -16)
@@ -370,24 +370,29 @@ offset_top = 19.0
 offset_right = 960.0
 offset_bottom = 19.0
 grow_vertical = 0
+mouse_filter = 2
 script = ExtResource("4_4q6a0")
 
 [node name="upgrade" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
 position = Vector2(79, -69)
+scale = Vector2(0.5, 0.5)
 activated = 1
 
 [node name="close" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
 position = Vector2(275, -70)
+scale = Vector2(0.5, 0.5)
 fra = 2
 activated = 2
 
 [node name="recon" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
 position = Vector2(468, -71)
+scale = Vector2(0.5, 0.5)
 fra = 4
 activated = 3
 
 [node name="intel" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
 position = Vector2(679, -73)
+scale = Vector2(0.5, 0.5)
 fra = 6
 activated = 4
 
@@ -401,6 +406,7 @@ offset_left = -326.0
 offset_top = 46.0
 offset_right = 820.0
 offset_bottom = 88.0
+mouse_filter = 2
 script = ExtResource("7_sb7tp")
 
 [node name="battle" type="RichTextLabel" parent="Camera2D/game_stats"]
@@ -457,11 +463,28 @@ theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center] IL : 1  [/center]"
 
+[node name="des_con" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="css albemarle" parent="Camera2D/des_con" node_paths=PackedStringArray("linked_station") instance=ExtResource("9_ysmj7")]
+position = Vector2(1363, 327)
+linked_station = NodePath("../../ConfedMap/spy_centers11")
+
+[node name="loc chase" parent="Camera2D/des_con" node_paths=PackedStringArray("linked_station") instance=ExtResource("9_ysmj7")]
+position = Vector2(849, 529)
+linked_station = NodePath("../../ConfedMap/spy_centers7")
+fra = 1
+
 [node name="conf" type="ColorRect" parent="."]
 offset_left = -330.0
 offset_top = 102.0
 offset_right = 1428.0
 offset_bottom = 142.0
+mouse_filter = 2
 color = Color(0.74902, 0.0392157, 0.188235, 1)
 
 [node name="feds" type="ColorRect" parent="."]
@@ -469,11 +492,12 @@ offset_left = -330.0
 offset_top = 102.0
 offset_right = -290.0
 offset_bottom = 142.0
+mouse_filter = 2
 color = Color(0.0392157, 0.192157, 0.380392, 1)
 
 [node name="fader" type="Sprite2D" parent="."]
 modulate = Color(0.901961, 0.839216, 0.776471, 0)
-position = Vector2(741, 268)
+position = Vector2(3430, 644)
 texture = ExtResource("2_tocqt")
 
 [node name="end_screen" parent="." instance=ExtResource("15_dkfr7")]

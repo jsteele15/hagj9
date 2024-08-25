@@ -8,53 +8,63 @@
 [ext_resource type="AudioStream" uid="uid://crdvi00mb1ewd" path="res://res/shush-90127.mp3" id="6_5h0a8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7imxx"]
-radius = 19.0
+radius = 43.0116
 
 [node name="spy_centers" type="Node2D"]
 script = ExtResource("1_5n4o1")
-
-[node name="SpyCenter" type="Sprite2D" parent="."]
-modulate = Color(0.294118, 0.4, 0.568627, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_u3exb")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_7imxx")
 
-[node name="alertlv" type="ColorRect" parent="."]
+[node name="SpyCenter" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="alertlv" type="ColorRect" parent="SpyCenter"]
+layout_mode = 0
 offset_left = -16.0
-offset_top = 18.0
+offset_top = 30.0
 offset_right = 16.0
-offset_bottom = 24.0
+offset_bottom = 40.0
+mouse_filter = 2
 color = Color(0.905838, 0.638877, 0.0834281, 1)
 
-[node name="reconlv" type="ColorRect" parent="."]
+[node name="reconlv" type="ColorRect" parent="SpyCenter"]
+layout_mode = 0
 offset_left = -16.0
-offset_top = -24.0
-offset_right = 16.0
-offset_bottom = -18.0
-color = Color(0.905838, 0.638877, 0.0834281, 1)
-
-[node name="SpyGlass" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -1)
-texture = ExtResource("3_jr71s")
-
-[node name="perc" type="RichTextLabel" parent="."]
-visible = false
-offset_left = 18.0
 offset_top = -30.0
-offset_right = 77.0
-offset_bottom = 27.0
-theme_override_colors/default_color = Color(0.294118, 0.4, 0.568627, 1)
+offset_right = 16.0
+offset_bottom = -20.0
+mouse_filter = 2
+color = Color(0.905838, 0.638877, 0.0834281, 1)
+
+[node name="perc" type="RichTextLabel" parent="SpyCenter"]
+visible = false
+layout_mode = 0
+offset_left = 22.0
+offset_top = -28.0
+offset_right = 81.0
+offset_bottom = 29.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("4_adjsc")
 theme_override_font_sizes/mono_font_size = 0
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "50%"
 fit_content = true
+
+[node name="SpyCenterim" type="Sprite2D" parent="SpyCenter"]
+modulate = Color(0.294118, 0.4, 0.568627, 1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_u3exb")
+
+[node name="SpyGlass" type="Sprite2D" parent="SpyCenter"]
+position = Vector2(0, -1)
+texture = ExtResource("3_jr71s")
 
 [node name="construction" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_nf8ay")

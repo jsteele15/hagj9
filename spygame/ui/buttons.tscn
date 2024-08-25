@@ -4,10 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://ctp5p7kjghwye" path="res://res/temp_buts.png" id="2_xbqkg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mqe6q"]
-radius = 33.0
+radius = 134.536
 
 [node name="buttons" type="Node2D"]
-scale = Vector2(2, 2)
 script = ExtResource("1_f3gho")
 
 [node name="TempButs" type="Sprite2D" parent="."]

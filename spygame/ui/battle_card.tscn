@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3k4kl8il6lwc"]
+[gd_scene load_steps=8 format=3 uid="uid://b3k4kl8il6lwc"]
 
 [ext_resource type="Script" path="res://ui/battle_card.gd" id="1_alwo1"]
 [ext_resource type="Texture2D" uid="uid://dkn8r5v2q0dxr" path="res://res/battle_card.png" id="1_qc4jn"]
 [ext_resource type="FontFile" uid="uid://ljumcpkmeute" path="res://res/amiri/Amiri-Bold.ttf" id="3_phg3e"]
 [ext_resource type="Texture2D" uid="uid://28h87pu88xbx" path="res://res/battle_images.png" id="3_vcyq3"]
+[ext_resource type="Texture2D" uid="uid://bkr40vh1g6r1u" path="res://res/close_but.png" id="4_8em1w"]
 [ext_resource type="AudioStream" uid="uid://xsefh45xoqay" path="res://res/battle_sounds.mp3" id="5_7pl6y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_euavx"]
@@ -41,10 +42,16 @@ texture = ExtResource("3_vcyq3")
 hframes = 3
 vframes = 4
 
+[node name="CloseBut" type="Sprite2D" parent="BattleCard"]
+position = Vector2(0, 165)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_8em1w")
+hframes = 2
+
 [node name="Area2D" type="Area2D" parent="BattleCard"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCard/Area2D"]
-position = Vector2(0.5, 161)
+position = Vector2(-0.5, 162)
 shape = SubResource("CircleShape2D_euavx")
 
 [node name="bat_name2" type="RichTextLabel" parent="BattleCard"]

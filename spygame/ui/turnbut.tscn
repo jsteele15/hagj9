@@ -4,10 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://ccl0wt6o87iy7" path="res://res/turn_buts.png" id="2_lxk07"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yt214"]
-radius = 64.531
+radius = 133.015
 
 [node name="turnbut" type="Node2D"]
-scale = Vector2(2, 2)
 script = ExtResource("1_hst8t")
 
 [node name="TurnButs" type="Sprite2D" parent="."]

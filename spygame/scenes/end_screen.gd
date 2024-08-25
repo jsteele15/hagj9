@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 			$EndContainer/VictoryFaces.frame = 1
 			$EndContainer/result.text = "[center]UNION VICTORY[/center]"
 			$EndContainer/exp.text = "[center]Through cunning we've helped to bring the rebellious southern states back into the fold![/center]"
-			$EndContainer/time_fin.text = " Date Finished : {date}".format({"date":level_info.date})
+			$EndContainer/time_fin.text = " Date Finished : {month} {date}".format({"month": level_info.month_list[level_info.current_month], "date":level_info.date})
 			$EndContainer/int_gath.text = " Intel Gathered : {int}".format({"int":level_info.cul_intel})
 		else:
 			##for union victory

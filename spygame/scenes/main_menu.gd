@@ -11,7 +11,7 @@ func _ready() -> void:
 	var cut_but = get_viewport_rect().size[0] /4
 	for b in range(len(button_list)):
 		button_list[b].position.x = cut_but * (b + 1) 
-		button_list[b].position.y = get_viewport_rect().size[1] - 200
+		button_list[b].position.y = get_viewport_rect().size[1]/2
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):

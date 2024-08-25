@@ -6,8 +6,8 @@ extends Node2D
 @export var rd1 : Sprite2D = null
 @export var rd2 : Sprite2D = null
 @export var rd3 : Sprite2D = null
-@export var rd4 : Sprite2D = null
-@onready var rd_list = [rd1, rd2, rd3, rd4]
+
+@onready var rd_list = [rd1, rd2, rd3]
 
 ##this is to show whether station is opperational
 var operational = false
@@ -33,56 +33,57 @@ var intel_here = false
 
 func _ready() -> void:
 	$".".scale = Vector2(0.6, 0.6)
-	$alertlv.size.x = alertness
-	$reconlv.size.x = recon_lv
+	$SpyCenter/alertlv.size.x = alertness * 2
+	$SpyCenter/reconlv.size.x = recon_lv * 2
 
 func _process(delta: float) -> void:
 	
 	if times_used > 1:
-		$perc.visible = true
+		$SpyCenter/perc.visible = true
 		
-		$perc.text = "{perc}%".format({"perc": percentage/times_used})
+		$SpyCenter/perc.text = "{perc}%".format({"perc": percentage/times_used})
 	
 	###this is for changing the colour of the awareness rect depending on what level its at
-	$alertlv.size.x = alertness
-	if $alertlv.size.x <= 16:
-		$alertlv.modulate = "658300"
+	$SpyCenter/alertlv.size.x = alertness
+	if $SpyCenter/alertlv.size.x <= 16:
+		$SpyCenter/alertlv.modulate = "658300"
 		
-	if $alertlv.size.x > 16 and $alertlv.size.x <= 28:
-		$alertlv.modulate = "e7a315"
+	if $SpyCenter/alertlv.size.x > 16 and $SpyCenter/alertlv.size.x <= 28:
+		$SpyCenter/alertlv.modulate = "e7a315"
 		
-	if $alertlv.size.x >= 28.8:
-		$alertlv.modulate = "c2002e"
+	if $SpyCenter/alertlv.size.x >= 28.8:
+		$SpyCenter/alertlv.modulate = "c2002e"
 	
 	###this is for changing the recon level bar, definatly doesnt need to be done every frame, might change this if i have timne
 	
-	$reconlv.size.x = recon_lv
-	if $reconlv.size.x <= 16:
-		$reconlv.modulate = "c2002e"
+	$SpyCenter/reconlv.size.x = recon_lv
+	if $SpyCenter/reconlv.size.x <= 16:
+		$SpyCenter/reconlv.modulate = "c2002e"
 		
-	if $reconlv.size.x > 16 and $reconlv.size.x <= 28:
-		$reconlv.modulate = "e7a315"
+	if $SpyCenter/reconlv.size.x > 16 and $SpyCenter/reconlv.size.x <= 28:
+		$SpyCenter/reconlv.modulate = "e7a315"
 		
-	if $reconlv.size.x >= 28.8:
-		$reconlv.modulate = "658300"
+	if $SpyCenter/reconlv.size.x >= 28.8:
+		$SpyCenter/reconlv.modulate = "658300"
 	
 	if reconing == true:
-		$SpyGlass.visible = true
+		$SpyCenter/SpyGlass.visible = true
 	if reconing == false:
-		$SpyGlass.visible = false
+		$SpyCenter/SpyGlass.visible = false
 	
 	###this is for working out if the center is operational or not
+	#this changes the whole thing, but really you just want it to be the image and everything else to be constant
 	if operational == false:
-		$SpyCenter.modulate = "ffffff"
-		$SpyGlass.visible = false
-		if $".".scale.x > 0.5:
-			$".".scale.x -= 0.01
-			$".".scale.y -= 0.01
+		$SpyCenter/SpyCenterim.modulate = "ffffff"
+		$SpyCenter/SpyGlass.visible = false
+		if $SpyCenter.scale.x > 0.7:
+			$SpyCenter.scale.x -= 0.01
+			$SpyCenter.scale.y -= 0.01
 	if operational == true:
-		$SpyCenter.modulate = "4b6691"
-		if $".".scale.x < 1:
-			$".".scale.x += 0.01
-			$".".scale.y += 0.01
+		$SpyCenter/SpyCenterim.modulate = "4b6691"
+		if $SpyCenter.scale.x < 1.4:
+			$SpyCenter.scale.x += 0.01
+			$SpyCenter.scale.y += 0.01
 
 
 func _input(event: InputEvent) -> void:
@@ -115,10 +116,8 @@ func _on_area_2d_mouse_exited() -> void:
 	entered = false
 
 func new_pos(new_station):
-	for i in new_station.rd_list:
-		if i != null:
-			for l in rd_list:
-				if l != null:
-					if i == l:
-						return true
-					
+	for i in rd_list:
+		for l in new_station.rd_list:
+			if i == l and i != null and l != null:
+				return true
+

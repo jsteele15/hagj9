@@ -3,11 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://dqpb26cpe02v8" path="res://res/end_container.png" id="1_e2jf4"]
 [ext_resource type="Script" path="res://scenes/end_screen.gd" id="1_s77lp"]
 [ext_resource type="Texture2D" uid="uid://n31tym82vfin" path="res://res/victory_faces.png" id="2_ka0oc"]
-[ext_resource type="Texture2D" uid="uid://df5edj26hpbbn" path="res://res/main_menu_but.png" id="3_f3k8k"]
+[ext_resource type="Texture2D" uid="uid://dhd46ko4rlodr" path="res://res/menu_buts.png" id="4_atd2i"]
 [ext_resource type="FontFile" uid="uid://ljumcpkmeute" path="res://res/amiri/Amiri-Bold.ttf" id="5_vslpi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kbc6h"]
-radius = 70.1142
+radius = 132.544
 
 [node name="end_screen" type="Node2D"]
 script = ExtResource("1_s77lp")
@@ -24,7 +24,9 @@ hframes = 2
 
 [node name="MainMenuBut" type="Sprite2D" parent="EndContainer"]
 position = Vector2(0, 166)
-texture = ExtResource("3_f3k8k")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_atd2i")
+hframes = 6
 
 [node name="Area2D" type="Area2D" parent="EndContainer/MainMenuBut"]
 

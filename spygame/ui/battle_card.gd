@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 		if $battle_sound.volume_db > -10:
 			$battle_sound.volume_db -= 0.25
 			
-		if $".".position.y < 1200:
+		if $".".position.y < get_viewport_rect().size[1] + 400:
 			$".".position.y += 20
 
 		else:

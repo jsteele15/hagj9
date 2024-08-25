@@ -47,8 +47,10 @@ func _process(delta: float) -> void:
 					
 					current_station = saved_station
 					current_station.intel_here = true
+					inside = false
 			else:
 				$".".position = current_station.position
+				inside = false
 				
 	if current_station.operational == false:
 		$".".queue_free()
@@ -80,12 +82,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				saved_station = area.get_parent()
 				#level_info.op -= 5
 				$paper_shuffle.play()
-			else:
-				pass
-
-
-func _on_area_2d_area_exited(area: Area2D) -> void:
-	inside = false
+			
 
 func is_intel():
 	$paper_shuffle.play()

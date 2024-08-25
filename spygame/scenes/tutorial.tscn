@@ -78,28 +78,33 @@ layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_left = -133.0
 offset_top = 19.0
-offset_right = 1674.0
+offset_right = 960.0
 offset_bottom = 19.0
 grow_vertical = 0
 script = ExtResource("1_l33b6")
 
 [node name="upgrade" parent="Camera2D/ui_butts" instance=ExtResource("2_oe2jr")]
 position = Vector2(79, -69)
+scale = Vector2(0.5, 0.5)
 activated = 1
 
 [node name="close" parent="Camera2D/ui_butts" instance=ExtResource("2_oe2jr")]
 position = Vector2(275, -70)
+scale = Vector2(0.5, 0.5)
 fra = 2
 activated = 2
 
 [node name="recon" parent="Camera2D/ui_butts" instance=ExtResource("2_oe2jr")]
 position = Vector2(468, -71)
+scale = Vector2(0.5, 0.5)
 fra = 4
 activated = 3
 
 [node name="intel" parent="Camera2D/ui_butts" instance=ExtResource("2_oe2jr")]
 position = Vector2(679, -73)
+scale = Vector2(0.5, 0.5)
 fra = 6
 activated = 4
 
