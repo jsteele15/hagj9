@@ -20,3 +20,6 @@ hframes = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodableSheet/Area2D"]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_2lhjd")
+
+[connection signal="mouse_entered" from="ExplodableSheet/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="ExplodableSheet/Area2D" to="." method="_on_area_2d_mouse_exited"]

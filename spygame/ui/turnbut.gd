@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var level_info = get_node("/root/GameVars")
+@export var size = 340
 
 var change_trig = false
 var selected = false

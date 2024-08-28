@@ -18,12 +18,9 @@ var entered = false
 var cost = 10
 var power_points = 10
 
-##alertness of the authorities
-var alertness = 0
-
 ###this is to work out its level of recon or if its currently reconing 
 var reconing = false
-var recon_lv = 0
+var recon_lv = 1
 
 ###so you cant use the same place over and over again
 var percentage = 100
@@ -33,41 +30,21 @@ var intel_here = false
 
 func _ready() -> void:
 	$".".scale = Vector2(0.6, 0.6)
-	$SpyCenter/alertlv.size.x = alertness * 2
-	$SpyCenter/reconlv.size.x = recon_lv * 2
+
 
 func _process(delta: float) -> void:
 	
+
 	if times_used > 1:
 		$SpyCenter/perc.visible = true
 		
 		$SpyCenter/perc.text = "{perc}%".format({"perc": percentage/times_used})
 	
-	###this is for changing the colour of the awareness rect depending on what level its at
-	$SpyCenter/alertlv.size.x = alertness
-	if $SpyCenter/alertlv.size.x <= 16:
-		$SpyCenter/alertlv.modulate = "658300"
-		
-	if $SpyCenter/alertlv.size.x > 16 and $SpyCenter/alertlv.size.x <= 28:
-		$SpyCenter/alertlv.modulate = "e7a315"
-		
-	if $SpyCenter/alertlv.size.x >= 28.8:
-		$SpyCenter/alertlv.modulate = "c2002e"
-	
-	###this is for changing the recon level bar, definatly doesnt need to be done every frame, might change this if i have timne
-	
-	$SpyCenter/reconlv.size.x = recon_lv
-	if $SpyCenter/reconlv.size.x <= 16:
-		$SpyCenter/reconlv.modulate = "c2002e"
-		
-	if $SpyCenter/reconlv.size.x > 16 and $SpyCenter/reconlv.size.x <= 28:
-		$SpyCenter/reconlv.modulate = "e7a315"
-		
-	if $SpyCenter/reconlv.size.x >= 28.8:
-		$SpyCenter/reconlv.modulate = "658300"
 	
 	if reconing == true:
 		$SpyCenter/SpyGlass.visible = true
+		if recon_lv > -1:
+			$SpyCenter/SpyGlass.frame = recon_lv
 	if reconing == false:
 		$SpyCenter/SpyGlass.visible = false
 	
@@ -81,9 +58,12 @@ func _process(delta: float) -> void:
 			$SpyCenter.scale.y -= 0.01
 	if operational == true:
 		$SpyCenter/SpyCenterim.modulate = "4b6691"
-		if $SpyCenter.scale.x < 1.4:
-			$SpyCenter.scale.x += 0.01
-			$SpyCenter.scale.y += 0.01
+		if $SpyCenter.scale.x < 1.3:
+			$SpyCenter.scale.x += 0.3
+			$SpyCenter.scale.y += 0.3
+		if $SpyCenter.scale.x > 1.4:
+			$SpyCenter.scale.x -= 0.01
+			$SpyCenter.scale.y -= 0.01
 
 
 func _input(event: InputEvent) -> void:

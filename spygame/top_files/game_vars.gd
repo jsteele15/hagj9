@@ -3,7 +3,7 @@ extends Node
 ###this is a force multiplyer for the battles
 var intel_sent = 1
 var cul_intel = 0
-
+var alertness = 0
 #this works out the current size of the bar and how close to union victory or loss
 ### the amount you can win increases each time
 var cur_lengh = null

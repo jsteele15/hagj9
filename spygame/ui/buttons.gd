@@ -7,6 +7,8 @@ extends Node2D
 #to compare to the level info
 @export var activated = 0
 
+@export var size = 296
+
 var change_trig = false
 var selected = false
 var entered = false
