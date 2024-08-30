@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpicmd3ka8vva"]
+[gd_scene load_steps=9 format=3 uid="uid://cpicmd3ka8vva"]
 
 [ext_resource type="Script" path="res://scenes/spy_centers.gd" id="1_5n4o1"]
 [ext_resource type="Texture2D" uid="uid://cmihopck0gbdo" path="res://res/spy_center.png" id="1_u3exb"]
 [ext_resource type="Texture2D" uid="uid://f7pnmtcs2cod" path="res://res/spy_glass.png" id="3_jr71s"]
 [ext_resource type="FontFile" uid="uid://ljumcpkmeute" path="res://res/amiri/Amiri-Bold.ttf" id="4_adjsc"]
+[ext_resource type="Texture2D" uid="uid://dpxpfvd6mkswb" path="res://res/counter_esp.png" id="4_gihxe"]
 [ext_resource type="AudioStream" uid="uid://r3or3hwomphx" path="res://res/Construction sound.wav" id="5_nf8ay"]
 [ext_resource type="AudioStream" uid="uid://crdvi00mb1ewd" path="res://res/shush-90127.mp3" id="6_5h0a8"]
 
@@ -43,6 +44,12 @@ fit_content = true
 modulate = Color(0.294118, 0.4, 0.568627, 1)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_u3exb")
+
+[node name="CounterEsp" type="Sprite2D" parent="SpyCenter"]
+visible = false
+position = Vector2(0, -1)
+texture = ExtResource("4_gihxe")
+hframes = 2
 
 [node name="SpyGlass" type="Sprite2D" parent="SpyCenter"]
 position = Vector2(0, -1)

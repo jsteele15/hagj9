@@ -21,6 +21,8 @@ var power_points = 10
 ###this is to work out its level of recon or if its currently reconing 
 var reconing = false
 var recon_lv = 1
+var counter_esp = false
+var count_lv = 1
 
 ###so you cant use the same place over and over again
 var percentage = 100
@@ -40,6 +42,13 @@ func _process(delta: float) -> void:
 		
 		$SpyCenter/perc.text = "{perc}%".format({"perc": percentage/times_used})
 	
+	
+	if counter_esp == true:
+		$SpyCenter/CounterEsp.visible = true
+		if count_lv > -1:
+			$SpyCenter/CounterEsp.frame = count_lv
+	if counter_esp == false:
+		$SpyCenter/CounterEsp.visible = false
 	
 	if reconing == true:
 		$SpyCenter/SpyGlass.visible = true
@@ -86,6 +95,14 @@ func _input(event: InputEvent) -> void:
 				level_info.op -= 5
 				reconing = true
 				$shush.play()
+				
+	if event.is_action_pressed("left_click") and entered == true and level_info.current_action == 5:
+		if operational == true and counter_esp == false:
+			##put some cost in, it all needs changing later
+			if level_info.op - 5 >= 0:	
+				level_info.op -= 5
+				counter_esp = true
+				reconing = false
 
 
 

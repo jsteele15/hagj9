@@ -62,8 +62,8 @@ func _ready() -> void:
 	
 	
 	###to set the card in the right place
-	$battle_card.position.x = get_viewport_rect().size[0]/2 -300
-	$battle_card.position.y = get_viewport_rect().size[1] + 400
+	$battle_card.position.x = -740
+	#$battle_card.position.y = get_viewport_rect().size[1] + 400
 	
 func _process(delta: float) -> void:
 	##this counts how mant active sights there are
@@ -100,6 +100,19 @@ func _process(delta: float) -> void:
 		###this increases your power depending on if theyre active
 		for c in range(len(spy_center_list)):
 			if spy_center_list[c].operational == true:
+				
+				###for the counter espionage thing, thisll activate first as it seems less punishing
+				if spy_center_list[c].counter_esp == true:
+					spy_center_list[c].count_lv -= 1
+					
+					###need to add a cost to this otherwise its free
+					
+					if spy_center_list[c].count_lv == -1:
+						level_info.alertness -= get_viewport_rect().size[0]/4
+						spy_center_list[c].count_lv = 1
+						spy_center_list[c].counter_esp = false
+					else:
+						pass
 				
 				
 				##this adds alertness to spy centers
@@ -210,8 +223,8 @@ func _process(delta: float) -> void:
 	if $fill.size.x < level_info.alertness:
 		$fill.size.x += 2
 	#this needs more work so it doesnt jump around
-	#if $fill.size.x > level_info.alertness:
-		#$fill.size.x -= 20
+	if $fill.size.x > level_info.alertness:
+		$fill.size.x -= 2
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reload"):

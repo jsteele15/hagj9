@@ -58,6 +58,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("opbut"):
 		current_action = 4
 		
+	if event.is_action_pressed("counteres"):
+		current_action = 5
+		
 	if event.is_action_pressed("newturn"):
 		new_turn = true
 

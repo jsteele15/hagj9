@@ -47,8 +47,9 @@ func _process(delta: float) -> void:
 		if $battle_sound.volume_db < 1:
 			$battle_sound.volume_db += 0.05
 		
-		if $".".position.y > 180:
-			$".".position.y -= 20
+		###this is the position of the battle card whilst open
+		if $".".position.x < get_viewport_rect().size[0]/2 - 370:
+			$".".position.x += 10
 		else:
 			if timer_set == false:
 				$battle_sound.play()
@@ -63,9 +64,10 @@ func _process(delta: float) -> void:
 		##to fade the battle noises out
 		if $battle_sound.volume_db > -10:
 			$battle_sound.volume_db -= 0.25
-			
-		if $".".position.y < get_viewport_rect().size[1] + 400:
-			$".".position.y += 20
+		
+		##this is whilst its closed
+		if $".".position.x > -740:
+			$".".position.x -= 20
 
 		else:
 			###so this is for resetting all of the triggers

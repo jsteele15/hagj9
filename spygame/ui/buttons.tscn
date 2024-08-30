@@ -12,7 +12,7 @@ script = ExtResource("1_f3gho")
 [node name="TempButs" type="Sprite2D" parent="."]
 position = Vector2(-1, -1)
 texture = ExtResource("2_xbqkg")
-hframes = 8
+hframes = 10
 
 [node name="Area2D" type="Area2D" parent="."]
 

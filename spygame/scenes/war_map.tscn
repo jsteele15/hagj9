@@ -412,8 +412,14 @@ scale = Vector2(0.5, 0.5)
 fra = 6
 activated = 4
 
+[node name="count" parent="Camera2D/ui_butts" instance=ExtResource("5_kdkj2")]
+position = Vector2(890, -83)
+scale = Vector2(0.5, 0.5)
+fra = 8
+activated = 5
+
 [node name="turnbut" parent="Camera2D/ui_butts" instance=ExtResource("6_tgcpb")]
-position = Vector2(936, -132)
+position = Vector2(1164, -94)
 
 [node name="game_stats" type="Control" parent="Camera2D"]
 layout_mode = 3
@@ -513,12 +519,12 @@ color = Color(0.866667, 0.764706, 0, 1)
 
 [node name="fader" type="Sprite2D" parent="."]
 modulate = Color(0.901961, 0.839216, 0.776471, 0)
-position = Vector2(579, 627)
+position = Vector2(504, 749)
 texture = ExtResource("2_tocqt")
 
 [node name="end_screen" parent="." instance=ExtResource("15_dkfr7")]
-position = Vector2(463, -724)
+position = Vector2(388, -653)
 scale = Vector2(2, 2)
 
 [node name="battle_card" parent="." instance=ExtResource("8_j3lif")]
-position = Vector2(308, 1200)
+position = Vector2(-737, 64)
