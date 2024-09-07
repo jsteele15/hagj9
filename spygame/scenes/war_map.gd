@@ -21,8 +21,16 @@ var op_gain = 5
 var rec_cost = 20
 
 func _ready() -> void:
-	###just messing around with scaleing the map
-	#$Camera2D/ConfedMap.scale = Vector2(1, 1)
+	###this needs to be applied to the ui
+	##it works by figuring out the resolution of the screen
+	##then scaling it based on that fact
+	##need to change the location of the map based on the new info
+	##and change the UI scale
+	var screen_size = get_viewport_rect().size
+	var map_scale_factor = (screen_size.x / 1920.0)*2
+	$Camera2D/ConfedMap.scale = Vector2(map_scale_factor, map_scale_factor)
+	
+	
 	##needs to change the location of the map as well though
 	
 	###this is to reset the game if you play it multiple times
@@ -55,10 +63,10 @@ func _ready() -> void:
 	$conf.size.x = get_viewport_rect().size[0]
 	
 	##this is for the alertness bar
-	$fill.size.x = 0
-	$back_bar.size.x = get_viewport_rect().size[0]
-	$fill.position.y = get_viewport_rect().size[1] 
-	$back_bar.position.y = get_viewport_rect().size[1] 
+	$Camera2D/fill.size.x = 0
+	$Camera2D/back_bar.size.x = get_viewport_rect().size[0]
+	$Camera2D/fill.position.y = get_viewport_rect().size[1] 
+	$Camera2D/back_bar.position.y = get_viewport_rect().size[1] 
 	
 	
 	###to set the card in the right place
@@ -77,7 +85,8 @@ func _process(delta: float) -> void:
 				count_num_recon += 1
 	
 	if level_info.new_turn == true:
-		
+		#instantly fill the alertness meter if you end the turn
+		$Camera2D/fill.size.x = level_info.alertness
 		
 		##for the months, change the clock
 		if level_info.current_month == 11:
@@ -220,12 +229,37 @@ func _process(delta: float) -> void:
 		$battle_card.closed = true
 	
 	###this fills and reduces the alertness bar
-	if $fill.size.x < level_info.alertness:
-		$fill.size.x += 2
+	if $Camera2D/fill.size.x < level_info.alertness:
+		$Camera2D/fill.size.x += 10
 	#this needs more work so it doesnt jump around
-	if $fill.size.x > level_info.alertness:
-		$fill.size.x -= 2
+	if $Camera2D/fill.size.x > level_info.alertness:
+		$Camera2D/fill.size.x -= 10
+		
+	if $Camera2D/fill.size.x >= get_viewport_rect().size[0]:
+		force_close()
 
+func force_close():
+	var shuffle_list = []
+	
+	#this checks the list of active stations
+	#then appends them to the shuffled list
+	for c in range(len(spy_center_list)):
+		if spy_center_list[c].operational == true:
+			shuffle_list.append(spy_center_list[c])
+	
+	#create the random seed
+	randomize()
+	shuffle_list.shuffle()
+	
+	var len_shuffle = round(len(shuffle_list)/2)
+	
+	for c in range(len_shuffle):
+		shuffle_list[c].operational = false
+	
+	$Camera2D/fill.size.x = 0
+	level_info.alertness = 0
+	level_info.op = round(level_info.op/2)
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reload"):
 		get_tree().reload_current_scene()
