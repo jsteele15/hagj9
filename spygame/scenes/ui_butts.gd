@@ -2,7 +2,7 @@ extends Control
 
 ###this will control the layout of the ui on the screen
 
-@onready var button_list = [$upgrade, $close, $recon, $count, $intel, $turnbut]
+@onready var button_list = [$upgrade, $recon, $close, $count, $intel, $turnbut]
 
 func _ready() -> void:
 	print(get_viewport_rect())

@@ -20,6 +20,10 @@ var rand_n = RandomNumberGenerator.new()
 var op_gain = 5
 var rec_cost = 20
 
+###to track how points you need to get to win
+var track_win;
+
+
 func _ready() -> void:
 	###this needs to be applied to the ui
 	##it works by figuring out the resolution of the screen
@@ -50,6 +54,7 @@ func _ready() -> void:
 	level_info.alertness = 0
 	
 	#so that battles can become more consecuential with time
+	track_win = get_viewport_rect().size[0]
 	level_info.cur_lengh = get_viewport_rect().size[0]/2 
 	level_info.year_one = get_viewport_rect().size[0]/32
 	level_info.year_two = get_viewport_rect().size[0]/16
@@ -224,7 +229,7 @@ func _process(delta: float) -> void:
 		if $fader.modulate.a > 0:
 			$fader.modulate.a -= 0.01
 			
-	if $feds.size.x >= get_viewport_rect().size[0]:
+	if level_info.cur_lengh >= track_win:
 		level_info.game_finish = true
 		$battle_card.closed = true
 	

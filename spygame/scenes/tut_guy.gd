@@ -43,16 +43,15 @@ Press me to return to the main menu and play the game. Good Luck![/center]"]
 var current_speach = 0
 
 func _ready() -> void:
-	$"../EndContainer".position.x = get_viewport_rect().size[0] -300
-	$".".position.x = get_viewport_rect().size[0]  -168
+	pass
 
 func _process(delta: float) -> void:
-	$"../EndContainer/RichTextLabel".text = "{speach}".format({"speach": speaches[current_speach]})
+	#$"../EndContainer/RichTextLabel".text = "{speach}".format({"speach": speaches[current_speach]})
 	
 	if $TutGuy.position.y == 20:
 		move_down = false
 		
-	if $TutGuy.position.y == -2:
+	if $TutGuy.position.y == 0:
 		move_down = true
 	
 	if move_down == true:

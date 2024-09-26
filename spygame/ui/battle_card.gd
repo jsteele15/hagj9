@@ -166,7 +166,7 @@ func battle_round():
 	###this is to work out the victory status
 	else:
 		if results_once == false:
-			if $union.size.x >= 239:
+			if $union.size.x >= 201:
 				$BattleCard/slavers.visible = false
 				$BattleCard/feds.visible = true
 				$BattleCard/feds.text = "[center] Union Victory! [/center]"
@@ -182,14 +182,15 @@ func battle_round():
 				if level_info.date == 1865:
 					###nerfed year five as the last battle can be far too damaging
 					level_info.cur_lengh += level_info.year_four
+			
+			###commented out because stalemates kind of suck
+			#if $union.size.x <239 and $union.size.x >190:
+				#$BattleCard/slavers.visible = false
+				#$BattleCard/feds.visible = true
+				#$BattleCard/feds.text = "[center] Stalemate [/center]"
+				#$BattleCard/feds/results.text = ""
 				
-			if $union.size.x <239 and $union.size.x >190:
-				$BattleCard/slavers.visible = false
-				$BattleCard/feds.visible = true
-				$BattleCard/feds.text = "[center] Stalemate [/center]"
-				$BattleCard/feds/results.text = ""
-				
-			if $union.size.x <= 190:
+			if $union.size.x <= 200:
 				$BattleCard/slavers.visible = true
 				$BattleCard/feds.visible = false
 				$BattleCard/slavers.text = "[center] Confederate Victory! [/center]"
