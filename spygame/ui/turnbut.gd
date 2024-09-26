@@ -18,14 +18,14 @@ func _process(delta: float) -> void:
 		$TurnButs.frame -= 1
 		change_trig = false
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_released("left_click") and clicked == false and entered == true:
-		level_info.new_turn = true
-		clicked = true
-		selected = false
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_released("left_click") and clicked == false and entered == true:
+		#level_info.new_turn = true
+		#clicked = true
+		#selected = false
 		
-	if event.is_action_pressed("left_click") and entered == true:
-		selected = true
+	#if event.is_action_pressed("left_click") and entered == true:
+		#selected = true
 
 		
 		
@@ -34,3 +34,18 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	entered = false
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	entered = true
+	
+	if event is InputEventMouseButton and event.pressed:
+		level_info.new_turn = true
+		clicked = true
+		selected = true
+		
+		
+	if event is InputEventMouseButton and not event.pressed:
+		selected = false
+		entered = false
+		

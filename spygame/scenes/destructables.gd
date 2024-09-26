@@ -23,7 +23,8 @@ func _process(delta: float) -> void:
 		$".".visible = true
 
 func _input(event: InputEvent) -> void:
-	##this allows you to set up a spy center
+	##this allows you to set up a destroy the object
+	###might need to change for touch screen
 	if event.is_action_released("left_click") and entered == true and level_info.current_action == 2:
 		if cost <= level_info.op:
 			level_info.op -= cost

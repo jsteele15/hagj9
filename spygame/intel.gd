@@ -55,11 +55,11 @@ func _process(delta: float) -> void:
 	if current_station.operational == false:
 		$".".queue_free()
 			
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("left_click") and entered == true and level_info.current_action == 4:
-		selected = true
-	if event.is_action_released("left_click") and selected == true:
-		selected = false
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("left_click") and entered == true and level_info.current_action == 4:
+		#selected = true
+	#if event.is_action_released("left_click") and selected == true:
+		#selected = false
 
 
 func _on_area_2d_mouse_entered() -> void:
@@ -89,3 +89,10 @@ func is_intel():
 	level_info.intel_sent += 1
 	level_info.cul_intel += 1
 	$".".queue_free()
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed and level_info.current_action == 4:
+		selected = true
+	if event is InputEventMouseButton and not event.pressed:
+		selected = false

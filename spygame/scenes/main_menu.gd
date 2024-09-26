@@ -22,23 +22,26 @@ func _input(event: InputEvent) -> void:
 		if ext_entered == true:
 			get_tree().quit()
 
-func _on_area_2d_mouse_entered() -> void:
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	play_entered = true
+	
+	
+		
+	if event is InputEventMouseButton and not event.pressed:
+		play_entered = false
 
-func _on_area_2d_mouse_exited() -> void:
-	play_entered = false
 
-
-func _on_tut_ar_mouse_entered() -> void:
+func _on_tut_ar_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	tut_entered = true
+		
+	if event is InputEventMouseButton and not event.pressed:
+		tut_entered = false
 
-func _on_tut_ar_mouse_exited() -> void:
-	tut_entered = false
 
-
-func _on_ext_ar_mouse_entered() -> void:
+func _on_ext_ar_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	ext_entered = true
-
-
-func _on_ext_ar_mouse_exited() -> void:
-	ext_entered = false
+		
+	if event is InputEventMouseButton and not event.pressed:
+		ext_entered = false

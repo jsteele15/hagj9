@@ -75,36 +75,6 @@ func _process(delta: float) -> void:
 			$SpyCenter.scale.y -= 0.01
 
 
-func _input(event: InputEvent) -> void:
-	##this allows you to set up a spy center
-	if event.is_action_released("left_click") and entered == true and level_info.current_action == 1:
-		if cost <= level_info.op and operational == false:
-			level_info.op -= cost
-			operational = true
-			$construction.play()
-	
-	##this allows you to close said center
-	if event.is_action_released("left_click") and entered == true and level_info.current_action == 2:
-		if operational == true:
-			level_info.op -= 10
-			operational = false
-			
-	if event.is_action_released("left_click") and entered == true and level_info.current_action == 3:
-		if operational == true and reconing == false:
-			if level_info.op - 5 >= 0:	
-				level_info.op -= 5
-				reconing = true
-				$shush.play()
-				
-	if event.is_action_pressed("left_click") and entered == true and level_info.current_action == 5:
-		if operational == true and counter_esp == false:
-			##put some cost in, it all needs changing later
-			if level_info.op - 5 >= 0:	
-				level_info.op -= 5
-				counter_esp = true
-				reconing = false
-
-
 
 func _on_area_2d_mouse_entered() -> void:
 	entered = true
@@ -118,3 +88,40 @@ func new_pos(new_station):
 			if i == l and i != null and l != null:
 				return true
 
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	entered = true
+	if event is InputEventMouseButton and event.pressed:
+		
+		if level_info.current_action == 1:
+			if cost <= level_info.op and operational == false:
+				level_info.op -= cost
+				operational = true
+				$construction.play()
+	
+		##this allows you to close said center
+		if level_info.current_action == 2:
+			if operational == true:
+				level_info.op -= 10
+				operational = false
+			
+		if level_info.current_action == 3:
+			if operational == true and reconing == false:
+				if level_info.op - 5 >= 0:	
+					level_info.op -= 5
+					reconing = true
+					$shush.play()
+				
+		if level_info.current_action == 5:
+			if operational == true and counter_esp == false:
+				##put some cost in, it all needs changing later
+				if level_info.op - 5 >= 0:	
+					level_info.op -= 5
+					counter_esp = true
+					reconing = false
+		
+		
+	if event is InputEventMouseButton and not event.pressed:
+		
+		entered = false

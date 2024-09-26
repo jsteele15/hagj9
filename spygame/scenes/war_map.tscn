@@ -33,7 +33,7 @@ limit_left = 0
 limit_top = 0
 
 [node name="ConfedMap" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-326, 101)
+position = Vector2(-330, 102)
 scale = Vector2(2, 2)
 texture = ExtResource("1_4fh36")
 centered = false
@@ -439,6 +439,7 @@ fra = 8
 activated = 5
 
 [node name="turnbut" parent="Camera2D/ui_butts" instance=ExtResource("6_tgcpb")]
+z_index = 1000
 position = Vector2(1164, -94)
 
 [node name="game_stats" type="Control" parent="Camera2D"]

@@ -78,6 +78,8 @@ func _ready() -> void:
 	$battle_card.position.x = -740
 	#$battle_card.position.y = get_viewport_rect().size[1] + 400
 	
+	###relative positions for the fucking destructables
+	
 func _process(delta: float) -> void:
 	##this counts how mant active sights there are
 	count_num_active = 1
