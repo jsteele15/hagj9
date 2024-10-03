@@ -92,7 +92,7 @@ func is_intel():
 
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.pressed and level_info.current_action == 4:
+	if event is InputEventMouseButton and event.pressed and level_info.current_action == 4 or event is InputEventScreenTouch and event.pressed and level_info.current_action == 4:
 		selected = true
-	if event is InputEventMouseButton and not event.pressed:
+	if event is InputEventMouseButton and not event.pressed or event is InputEventScreenTouch and not event.pressed:
 		selected = false

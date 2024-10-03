@@ -86,9 +86,10 @@ func _input(event: InputEvent) -> void:
 	###and just have a var iable inside that triggers at the right moment
 	###it might save sometime fucking about with have two parrelel systems
 	
-	if event is InputEventMouseButton and event.pressed or event.is_action_pressed("left_click"):
-		
+	if event is InputEventScreenTouch and event.pressed or event.is_action_pressed("left_click"):
+		print("here")
 		if $war_map/Camera2D/ui_butts/upgrade.entered == true and open_pressed == false and tutorial_beats == 0:
+			print($war_map/Camera2D/ui_butts/upgrade.entered)
 			$tutorial_text.text = "Now press on the station in Tennessee"
 			arrow_pos = Vector2($war_map/Camera2D/ConfedMap/spy_centers6.global_position[0]-64, $war_map/Camera2D/ConfedMap/spy_centers6.global_position[1])
 			open_pressed = true
@@ -175,7 +176,7 @@ func _input(event: InputEvent) -> void:
 				$overlay/TutorialArrow.visible = false
 			
 		
-	if event is InputEventMouseButton and not event.pressed or event.is_action_pressed("left_click"):
+	if event is InputEventScreenTouch and not event.pressed or event.is_action_pressed("left_click"):
 		if $war_map/Camera2D/ConfedMap/north.current_intel != null and north_pressed == false and tutorial_beats == 8:
 			$tutorial_text.text = "Notice the gold bar at the bottom filling up. This is how conspicuous your operation is. If it fills up too much your stations will be raided. Press the counter button."
 			arrow_pos = Vector2(get_viewport_rect().size[0]/3-32, get_viewport_rect().size[1] - 100)

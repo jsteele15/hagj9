@@ -92,7 +92,7 @@ func new_pos(new_station):
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	entered = true
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed or event is InputEventScreenTouch and event.pressed:
 		
 		if level_info.current_action == 1:
 			if cost <= level_info.op and operational == false:
@@ -122,6 +122,6 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 					reconing = false
 		
 		
-	if event is InputEventMouseButton and not event.pressed:
+	if event is InputEventMouseButton and not event.pressed or event is InputEventScreenTouch and not event.pressed:
 		
 		entered = false

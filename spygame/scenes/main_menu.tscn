@@ -78,8 +78,6 @@ frame = 4
 shape = SubResource("CircleShape2D_4ul6g")
 
 [connection signal="input_event" from="play/Area2D" to="." method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="play/Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="play/Area2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="tut/tut_ar" to="." method="_on_tut_ar_input_event"]
 [connection signal="mouse_entered" from="tut/tut_ar" to="." method="_on_tut_ar_mouse_entered"]
 [connection signal="mouse_exited" from="tut/tut_ar" to="." method="_on_tut_ar_mouse_exited"]

@@ -36,21 +36,22 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	pass
 
-func _on_area_2d_mouse_entered() -> void:
-	entered = true
+#func _on_area_2d_mouse_entered() -> void:
+	#entered = true
 
 
 
-func _on_area_2d_mouse_exited() -> void:
-	entered = false
+#func _on_area_2d_mouse_exited() -> void:
+	#e#ntered = false
 
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	entered = true
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed or event is InputEventScreenTouch and event.pressed:
+		
 		level_info.current_action = activated
 		
 		print("this is inside the button ", entered)
-	if event is InputEventMouseButton and not event.pressed:
+	if event is InputEventMouseButton and not event.pressed or event is InputEventScreenTouch and not event.pressed:
 		entered = false
 		print("this is inside the button ", entered)
