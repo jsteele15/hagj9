@@ -8,9 +8,11 @@
 [ext_resource type="FontFile" uid="uid://ljumcpkmeute" path="res://res/amiri/Amiri-Bold.ttf" id="6_jwclu"]
 
 [node name="tutorial" type="Node2D"]
-script = ExtResource("1_4hn2s")
 
 [node name="war_map" parent="." instance=ExtResource("2_6sptw")]
+
+[node name="tut control" type="Node2D" parent="."]
+script = ExtResource("1_4hn2s")
 
 [node name="overlay" type="Control" parent="."]
 layout_mode = 3

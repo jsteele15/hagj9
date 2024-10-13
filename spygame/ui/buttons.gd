@@ -52,6 +52,6 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		level_info.current_action = activated
 		
 		print("this is inside the button ", entered)
-	if event is InputEventMouseButton and not event.pressed or event is InputEventScreenTouch and not event.pressed:
+	if event is InputEventMouseButton and not event.pressed or event is InputEventScreenTouch and not event.pressed: # is InputEventMouseButton and not event.pressed or event is InputEventScreenTouch and not event.pressed:
 		entered = false
 		print("this is inside the button ", entered)
