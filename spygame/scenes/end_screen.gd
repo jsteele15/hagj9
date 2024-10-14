@@ -19,12 +19,14 @@ func _process(delta: float) -> void:
 			$EndContainer/exp.text = "[center]Through cunning we've helped to bring the rebellious southern states back into the fold![/center]"
 			$EndContainer/time_fin.text = " Date Finished : {month} {date}".format({"month": level_info.month_list[level_info.current_month], "date":level_info.date})
 			$EndContainer/int_gath.text = " Intel Gathered : {int}".format({"int":level_info.cul_intel})
+			$EndContainer/explod.text = " Sabotages : {ex}".format({"ex":level_info.num_ex})
 		else:
 			##for union victory
 			$EndContainer/result.text = "[center]CONFEDERATE VICTORY[/center]"
 			$EndContainer/exp.text = "[center]Despite our best efforts, the Confederates have won the day![/center]"
 			$EndContainer/time_fin.text = " Date Finished : {date}".format({"date":level_info.date})
 			$EndContainer/int_gath.text = " Intel Gathered : {int}".format({"int":level_info.cul_intel})
+			$EndContainer/explod.text = " Sabotages : {ex}".format({"ex":level_info.num_ex})
 #$BattleCard/bat_name2.text = "[center] Battle of {name}[/center]".format({"name":level_info.battle_list[level_info.battle_ind][0]})
 
 func _input(event: InputEvent) -> void:

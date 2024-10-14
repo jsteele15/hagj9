@@ -28,12 +28,14 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("left_click") and entered == true and level_info.current_action == 2:
 		if cost <= level_info.op:
 			level_info.op -= cost
+			level_info.num_ex += 1
 			##want a little animation
 			##but for now itll just disapear
-			
+			$explosion.emitting = true
 			#adds to the war score
+			$construction.playing = true
 			level_info.cur_lengh += get_viewport_rect().size[0]/16
-			$".".queue_free()
+			$ExplodableSheet.visible = false
 
 func _on_area_2d_mouse_entered() -> void:
 	entered = true

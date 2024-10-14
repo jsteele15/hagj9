@@ -100,11 +100,6 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 				operational = true
 				$construction.play()
 	
-		##this allows you to close said center
-		if level_info.current_action == 2:
-			if operational == true:
-				level_info.op -= 10
-				operational = false
 			
 		if level_info.current_action == 3:
 			if operational == true and reconing == false:
@@ -116,8 +111,8 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		if level_info.current_action == 5:
 			if operational == true and counter_esp == false:
 				##put some cost in, it all needs changing later
-				if level_info.op - 5 >= 0:	
-					level_info.op -= 5
+				if level_info.op - 10 >= 0:	
+					level_info.op -= 10
 					counter_esp = true
 					reconing = false
 		

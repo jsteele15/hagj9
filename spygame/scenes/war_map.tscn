@@ -22,8 +22,7 @@ position = Vector2(330, -39)
 script = ExtResource("1_5m3uf")
 
 [node name="WhiteBlock" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(0.901961, 0.839216, 0.776471, 0.631373)
+modulate = Color(0.878894, 0.84698, 0.790893, 0.631373)
 position = Vector2(2076, 857)
 scale = Vector2(1.93761, 0.981883)
 texture = ExtResource("2_tocqt")
@@ -264,7 +263,7 @@ rotation = -1.22173
 scale = Vector2(0.0819957, 1.35025)
 texture = ExtResource("3_lf4le")
 script = ExtResource("4_yuor6")
-con_1 = NodePath("../spy_centers4")
+con_1 = NodePath("../spy_centers5")
 con_2 = NodePath("../spy_centers8")
 rd = NodePath(".")
 
@@ -524,7 +523,8 @@ color = Color(0.0392157, 0.192157, 0.380392, 1)
 
 [node name="fader" type="Sprite2D" parent="."]
 modulate = Color(0.901961, 0.839216, 0.776471, 0)
-position = Vector2(3911, 1277)
+position = Vector2(1815, 1259)
+scale = Vector2(1.781, 1.002)
 texture = ExtResource("2_tocqt")
 
 [node name="end_screen" parent="." instance=ExtResource("15_dkfr7")]

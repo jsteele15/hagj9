@@ -43,7 +43,7 @@ func _ready() -> void:
 	level_info.cul_intel = 0
 	level_info.turn = 1
 	level_info.date = 1861
-	level_info.op = 10
+	level_info.op = 30
 	level_info.new_turn = true
 	level_info.current_month = 1
 	level_info.battle_list = [["Fort Sumter", 2], ["Bull Run", 3], ["Shiloh", 9], ["Anietam", 5], ["Fredericksburg", 3], ["Chancellorsville", 4],
@@ -75,8 +75,8 @@ func _ready() -> void:
 	
 	
 	###to set the card in the right place
-	$battle_card.position.x = -740
-	#$battle_card.position.y = get_viewport_rect().size[1] + 400
+	$battle_card.position.x = get_viewport_rect().size[0]/2 - 300
+	$battle_card.position.y = -1000
 	
 	###relative positions for the fucking destructables
 	###need to add
@@ -85,6 +85,12 @@ func _process(delta: float) -> void:
 	##this counts how mant active sights there are
 	count_num_active = 1
 	count_num_recon = 0
+	
+	
+	var screen_size = get_viewport_rect().size
+	var map_scale_factor = (screen_size.x / 1920.0)*2
+	$Camera2D/ConfedMap.scale = Vector2(map_scale_factor, map_scale_factor)
+	
 	
 	for c in range(len(spy_center_list)):
 		if spy_center_list[c].operational == true:
@@ -217,8 +223,10 @@ func _process(delta: float) -> void:
 	###to move the ui down when a battle is happening
 	if level_info.battle_list[level_info.battle_ind][1] == 0 and $Camera2D/ui_butts.position.y < get_viewport_rect().size[1] + 360 and level_info.game_finish != true:
 		$Camera2D/ui_butts.position.y += 20
+		
 	if level_info.battle_list[level_info.battle_ind][1] != 0 and $Camera2D/ui_butts.position.y > 220 and level_info.game_finish != true:
 		$Camera2D/ui_butts.position.y -= 20
+		$Camera2D/ui_butts/turnbut/TurnButs.frame = 0
 	
 	###this needs to keep on reseting, because otherwise when this is implemented it wont work
 	$Camera2D/ConfedMap/north.intel_here = false
@@ -232,9 +240,10 @@ func _process(delta: float) -> void:
 		if $fader.modulate.a > 0:
 			$fader.modulate.a -= 0.01
 			
-	if level_info.cur_lengh >= track_win:
+	if level_info.cur_lengh >= track_win or $feds.size.x <= 0:
 		level_info.game_finish = true
 		$battle_card.closed = true
+		$Camera2D/ui_butts.position.y += 20
 	
 	###this fills and reduces the alertness bar
 	if $Camera2D/fill.size.x < level_info.alertness:

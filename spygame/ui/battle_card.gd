@@ -48,8 +48,8 @@ func _process(delta: float) -> void:
 			$battle_sound.volume_db += 0.05
 		
 		###this is the position of the battle card whilst open
-		if $".".position.x < get_viewport_rect().size[0]/2 - 370:
-			$".".position.x += 10
+		if $".".position.y < 100:
+			$".".position.y += 10
 		else:
 			if timer_set == false:
 				$battle_sound.play()
@@ -66,8 +66,8 @@ func _process(delta: float) -> void:
 			$battle_sound.volume_db -= 0.25
 		
 		##this is whilst its closed
-		if $".".position.x > -740:
-			$".".position.x -= 20
+		if $".".position.y > -1000:
+			$".".position.y -= 20
 
 		else:
 			###so this is for resetting all of the triggers
@@ -122,7 +122,9 @@ func _input(event: InputEvent) -> void:
 					level_info.cur_lengh += level_info.year_four
 				if level_info.date == 1865:
 					level_info.cur_lengh += level_info.year_five
-			
+		
+		###if i wanted to make this more iterable i would need to change this so it relects the amount of battles
+		###in any given board
 		if level_info.battle_ind + 1 < 11:
 			level_info.battle_ind += 1
 		else:
